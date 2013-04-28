@@ -92,7 +92,7 @@ public class TipoPagamentoFuncionarioMB implements Serializable{
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edição do tipo de pagamento de funcionario " + ((TipoPagamentoFuncionario)event.getObject()).getDescricao() + " foi cancelada");
+    	JSFUtil.addInfoMessage("EdiÃ§Ã£o do tipo de pagamento de funcionario " + ((TipoPagamentoFuncionario)event.getObject()).getDescricao() + " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {  

@@ -186,7 +186,7 @@ public class SindicatoMB implements Serializable{
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edi��o do sindicato " + ((Sindicato)event.getObject()).getRazaoSocial() + " foi cancelada");
+    	JSFUtil.addInfoMessage("Edição do sindicato " + ((Sindicato)event.getObject()).getRazaoSocial() + " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {  

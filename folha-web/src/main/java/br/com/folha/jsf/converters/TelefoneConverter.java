@@ -34,7 +34,7 @@ public class TelefoneConverter implements Converter{
 	    	  encontrouCaracterInvalido = true;
 	    }
 	    if (encontrouCaracterInvalido) {
-	      FacesMessage message = new FacesMessage("Ocorreu um erro de conversão. ","Telefone inv�lido");
+	      FacesMessage message = new FacesMessage("Ocorreu um erro de conversão. ","Telefone inválido");
 	      message.setSeverity(FacesMessage.SEVERITY_ERROR);
 	      throw new ConverterException(message);
 	    }
@@ -44,7 +44,7 @@ public class TelefoneConverter implements Converter{
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
 		//11111111
-	    //(11) 1111-1111 - como ser� exibido
+	    //(11) 1111-1111 - como será exibido
 	    String v = arg2.toString();
 	    StringBuilder builder = new StringBuilder();
 	    int tam = v.length();

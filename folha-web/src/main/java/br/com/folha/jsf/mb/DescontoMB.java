@@ -101,7 +101,7 @@ public class DescontoMB implements Serializable{
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edição do desconto " + ((Desconto)event.getObject()).getDescricao()+ " foi cancelada");
+    	JSFUtil.addInfoMessage("EdiÃ§Ã£o do desconto " + ((Desconto)event.getObject()).getDescricao()+ " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {  

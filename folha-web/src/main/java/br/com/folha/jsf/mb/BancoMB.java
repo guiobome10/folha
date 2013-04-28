@@ -90,7 +90,7 @@ public class BancoMB implements Serializable{
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edição do banco " + ((Banco)event.getObject()).getNome() + " foi cancelada");
+    	JSFUtil.addInfoMessage("EdiÃ§Ã£o do banco " + ((Banco)event.getObject()).getNome() + " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {  

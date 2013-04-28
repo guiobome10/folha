@@ -20,7 +20,7 @@ public class CidadeValidator implements Validator {
     	 if (cidade.getId() == null || cidade.getId().equals(new Long(0))) {
                FacesMessage message = new FacesMessage();
                message.setSeverity(FacesMessage.SEVERITY_ERROR);
-               message.setSummary("Erro na validação do cpf. Verifique o cpf digitado.");
+               message.setSummary("Erro na validaÃ§Ã£o do cpf. Verifique o cpf digitado.");
                throw new ValidatorException(message);
           }
      }

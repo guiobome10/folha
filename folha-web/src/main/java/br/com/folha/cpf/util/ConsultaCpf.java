@@ -33,8 +33,8 @@ import org.apache.http.protocol.HttpContext;
 public class ConsultaCpf {
 
 	private static final String CPF = "CPF: ";
-	private static final String NOME_PESSOA_FISICA = "Nome da Pessoa F�sica: ";
-	private static final String SITUACAO_CADASTRAL = "Situa��o Cadastral: ";
+	private static final String NOME_PESSOA_FISICA = "Nome da Pessoa Física: ";
+	private static final String SITUACAO_CADASTRAL = "Situação Cadastral: ";
 	private static final String DIGITO_VERIFICADOR = "Digito Verificador: ";
 	private static final String CONTEUDO_DADOS = "clConteudoDados"; 
 	private static final String CONTEUDO_ERRO = "clConteudoCompBold"; 
@@ -75,11 +75,11 @@ public class ConsultaCpf {
 //        HttpHost proxy = new HttpHost(strProxyHost, Integer.valueOf(strProxyPort));
 //        cliente.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
           
-		// Adiciona a autentica��o do Proxy
+		// Adiciona a autenticação do Proxy
 //        cliente.getCredentialsProvider().setCredentials( new AuthScope(proxy),
 //				new NTCredentials(strProxyUsername, strProxyPassword, strProxyHost, strProxyDomain));
 
-        // Adicionando um sistema de redire��o  
+        // Adicionando um sistema de redireção  
         cliente.setRedirectStrategy(new LaxRedirectStrategy());  
   
         // Mantendo a conexão sempre ativa  
@@ -147,10 +147,10 @@ public class ConsultaCpf {
         // Criando o método de acesso  
         HttpPost requisicao3 = new HttpPost("http://www.receita.fazenda.gov.br/Aplicacoes/ATCTA/CPF/ConsultaPublicaExibir.asp");  
   
-        // Lista de par�metros  
+        // Lista de parâmetros  
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();  
   
-        // Adicionando os par�metros  
+        // Adicionando os parâmetros  
 //        nameValuePairs.add(new BasicNameValuePair("origem", "comprovante"));  
 //        nameValuePairs.add(new BasicNameValuePair("search_type", "cpf"));  
         nameValuePairs.add(new BasicNameValuePair("txtCPF", cpf));  
@@ -162,7 +162,7 @@ public class ConsultaCpf {
         // Encapsulando  
         UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(nameValuePairs, "UTF-8");  
   
-        // A adi��o dos par�metros  
+        // A adição dos parâmetros  
         requisicao3.setEntity(urlEncodedFormEntity);  
   
         // Resposta  
@@ -231,7 +231,7 @@ public class ConsultaCpf {
 			}
 		}
 		if(linha.contains(CONTEUDO_ERRO)){
-			throw new Exception("CPF não encontrado na receita federal ou inv�lido. Por favor verifique se o cpf foi digitado corretamente.");
+			throw new Exception("CPF não encontrado na receita federal ou inválido. Por favor verifique se o cpf foi digitado corretamente.");
 		}
 		if(erro && linha.contains(SPAN_ERRO)){
 			erro = false;

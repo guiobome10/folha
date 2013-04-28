@@ -81,7 +81,7 @@ public class EstadoMB implements Serializable{
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edição do estado " + ((Estado)event.getObject()).getNome() + " foi cancelada");
+    	JSFUtil.addInfoMessage("EdiÃ§Ã£o do estado " + ((Estado)event.getObject()).getNome() + " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {

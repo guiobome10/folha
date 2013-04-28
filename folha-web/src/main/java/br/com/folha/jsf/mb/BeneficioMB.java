@@ -102,7 +102,7 @@ public class BeneficioMB implements Serializable{
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edição do beneficio " + ((Beneficio)event.getObject()).getDescricao()+ " foi cancelada");
+    	JSFUtil.addInfoMessage("EdiÃ§Ã£o do beneficio " + ((Beneficio)event.getObject()).getDescricao()+ " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {  

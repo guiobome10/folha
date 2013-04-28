@@ -32,7 +32,7 @@ public class CpfConverter implements Converter{
 	            encontrouCaracterInvalido = true;
 	    }
 	    if (encontrouCaracterInvalido) {
-	      FacesMessage message = new FacesMessage("Ocorreu um erro de conversão. ","CPF inv�lido");
+	      FacesMessage message = new FacesMessage("Ocorreu um erro de conversão. ","CPF inválido");
 	      message.setSeverity(FacesMessage.SEVERITY_ERROR);
 	      throw new ConverterException(message);
 	    }
@@ -42,7 +42,7 @@ public class CpfConverter implements Converter{
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
 		//11111111111
-	    //111.111.111-11 - como ser� exibido
+	    //111.111.111-11 - como será exibido
 	    String v = arg2.toString();
 	    StringBuilder builder = new StringBuilder();
 	    int tam = v.length();

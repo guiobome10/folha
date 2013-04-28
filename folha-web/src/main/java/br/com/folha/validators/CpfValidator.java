@@ -15,7 +15,7 @@ public class CpfValidator implements Validator {
     	 if (!validaCPF(String.valueOf(valorTela))) {
                FacesMessage message = new FacesMessage();
                message.setSeverity(FacesMessage.SEVERITY_ERROR);
-               message.setSummary("Erro na valida��o do cpf. Verifique o cpf digitado.");
+               message.setSummary("Erro na validação do cpf. Verifique o cpf digitado.");
                throw new ValidatorException(message);
           }
      }

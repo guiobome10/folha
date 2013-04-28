@@ -90,7 +90,7 @@ public class NacionalidadeMB implements Serializable{
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edição da nacionalidade " + ((Nacionalidade)event.getObject()).getDescricao()+ " foi cancelada");
+    	JSFUtil.addInfoMessage("EdiÃ§Ã£o da nacionalidade " + ((Nacionalidade)event.getObject()).getDescricao()+ " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {  

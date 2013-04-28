@@ -90,7 +90,7 @@ public class CorMB implements Serializable{
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edição da cor " + ((Cor)event.getObject()).getDescricao()+ " foi cancelada");
+    	JSFUtil.addInfoMessage("EdiÃ§Ã£o da cor " + ((Cor)event.getObject()).getDescricao()+ " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {  

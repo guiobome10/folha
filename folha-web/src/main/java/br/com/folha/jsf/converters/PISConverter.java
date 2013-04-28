@@ -31,7 +31,7 @@ public class PISConverter implements Converter{
 	            encontrouCaracterInvalido = true;
 	    }
 	    if (encontrouCaracterInvalido) {
-	      FacesMessage message = new FacesMessage("Ocorreu um erro de conversão. ","PIS inv�lido");
+	      FacesMessage message = new FacesMessage("Ocorreu um erro de conversão. ","PIS inválido");
 	      message.setSeverity(FacesMessage.SEVERITY_ERROR);
 	      throw new ConverterException(message);
 	    }
@@ -41,7 +41,7 @@ public class PISConverter implements Converter{
 	@Override
 	public String getAsString(FacesContext facesContext, UIComponent componente, Object value) {
 		//11111111111
-	    //1111111111-1 - como ser� exibido
+	    //1111111111-1 - como será exibido
 	    String v = value.toString();
 	    String mask = "";
 	    if(v.isEmpty()){
@@ -62,7 +62,7 @@ public class PISConverter implements Converter{
 	        pos++;
 	    }
 
-	    //Se o tamanho da string estiver menor que o tamanho da m�scara coloca zeros a esquerda.
+	    //Se o tamanho da string estiver menor que o tamanho da máscara coloca zeros a esquerda.
 	    for(int i = builder.length(); i < mask.length(); i++){
 	    	builder.append("0");
 	    }

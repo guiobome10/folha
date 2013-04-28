@@ -143,7 +143,7 @@ public class CargoMB implements Serializable{
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edição do cargo " + ((Cargo)event.getObject()).getNome() + " foi cancelada");
+    	JSFUtil.addInfoMessage("EdiÃ§Ã£o do cargo " + ((Cargo)event.getObject()).getNome() + " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {  

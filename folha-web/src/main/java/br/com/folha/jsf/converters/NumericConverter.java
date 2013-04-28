@@ -30,7 +30,7 @@ public class NumericConverter implements Converter{
 	    for(int a = v.length()-1; a >= 0; a--){
 	    	builder.append(v.charAt(a));
 	    }
-	    //Se o tamanho da string estiver menor que o tamanho da m·scara coloca zeros a esquerda.
+	    //Se o tamanho da string estiver menor que o tamanho da m√°scara coloca zeros a esquerda.
 	    for(int i = builder.length(); i < mask.length(); i++){
 	    	builder.append("0");
 	    }

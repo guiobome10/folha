@@ -91,7 +91,7 @@ public class TipoRaisFuncionarioMB implements Serializable{
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edição do tipo de Rais do funcionario " + ((TipoRaisFuncionario)event.getObject()).getDescricao() + " foi cancelada");
+    	JSFUtil.addInfoMessage("EdiÃ§Ã£o do tipo de Rais do funcionario " + ((TipoRaisFuncionario)event.getObject()).getDescricao() + " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {  

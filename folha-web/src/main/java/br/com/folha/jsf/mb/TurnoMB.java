@@ -90,7 +90,7 @@ public class TurnoMB implements Serializable{
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edição do turno " + ((Turno)event.getObject()).getAsString() + " foi cancelada");
+    	JSFUtil.addInfoMessage("EdiÃ§Ã£o do turno " + ((Turno)event.getObject()).getAsString() + " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {  

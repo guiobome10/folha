@@ -84,14 +84,14 @@ public class DepartamentoMB implements Serializable{
 	public void excluir(){
 		try {
 			facade.excluir(departamento);
-			JSFUtil.addInfoMessage("Departamento excluído com sucesso!");
+			JSFUtil.addInfoMessage("Departamento excluï¿½do com sucesso!");
 		} catch (AppException e) {
 			JSFUtil.trataAppExeption(e);
 		}		
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edição do departamento " + ((Departamento)event.getObject()).getNome() + " foi cancelada");
+    	JSFUtil.addInfoMessage("EdiÃ§Ã£o do departamento " + ((Departamento)event.getObject()).getNome() + " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {  

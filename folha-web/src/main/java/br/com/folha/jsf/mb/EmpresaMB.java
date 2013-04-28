@@ -170,7 +170,7 @@ public class EmpresaMB implements Serializable{
 	}
 
 //    public void onCancel(RowEditEvent event) {  
-//    	JSFUtil.addInfoMessage("Edição da Empresa " + ((Empresa)event.getObject()).getCnpj() + " " + ((Empresa)event.getObject()).getRazaoSocial() + " foi cancelada");
+//    	JSFUtil.addInfoMessage("EdiÃ§Ã£o da Empresa " + ((Empresa)event.getObject()).getCnpj() + " " + ((Empresa)event.getObject()).getRazaoSocial() + " foi cancelada");
 //    } 
 //    
 //    public void onEdit(RowEditEvent event) {  

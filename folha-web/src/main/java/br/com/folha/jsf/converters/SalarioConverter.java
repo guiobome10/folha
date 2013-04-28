@@ -22,7 +22,7 @@ public class SalarioConverter implements Converter{
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
 		//111111.11
-	    //11.111.111,11 - como ser· exibido
+	    //11.111.111,11 - como ser√° exibido
 	    String v = arg2.toString();
 	    v = v.replace('.', ',');
 	    StringBuilder builder = new StringBuilder();

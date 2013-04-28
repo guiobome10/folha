@@ -185,7 +185,7 @@ public class FuncionarioMB implements Serializable{
 	}
 
 //    public void onCancel(RowEditEvent event) {  
-//    	JSFUtil.addInfoMessage("Edição da Funcionario " + ((Funcionario)event.getObject()).getCnpj() + " " + ((Funcionario)event.getObject()).getRazaoSocial() + " foi cancelada");
+//    	JSFUtil.addInfoMessage("EdiÃ§Ã£o da Funcionario " + ((Funcionario)event.getObject()).getCnpj() + " " + ((Funcionario)event.getObject()).getRazaoSocial() + " foi cancelada");
 //    } 
 //    
 //    public void onEdit(RowEditEvent event) {  

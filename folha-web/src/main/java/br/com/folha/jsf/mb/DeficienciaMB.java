@@ -90,7 +90,7 @@ public class DeficienciaMB implements Serializable{
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edição da deficiencia " + ((Deficiencia)event.getObject()).getDescricao()+ " foi cancelada");
+    	JSFUtil.addInfoMessage("EdiÃ§Ã£o da deficiencia " + ((Deficiencia)event.getObject()).getDescricao()+ " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {  

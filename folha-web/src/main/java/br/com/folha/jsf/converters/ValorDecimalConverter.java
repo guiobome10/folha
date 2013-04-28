@@ -19,7 +19,7 @@ public class ValorDecimalConverter implements Converter{
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent componente, Object arg2) {
 		//111111.11
-	    //111.111,11 - como ser· exibido
+	    //111.111,11 - como ser√° exibido
 	    String v = arg2.toString();
 	    v = v.replace('.', ',');
 	    String mask = "";
@@ -43,7 +43,7 @@ public class ValorDecimalConverter implements Converter{
 	    	builder.append(valorAntesDoPonto.charAt(a));
 	    	ponto++;
 	    }
-	    //Se o tamanho da string estiver menor que o tamanho da m·scara coloca zeros a esquerda.
+	    //Se o tamanho da string estiver menor que o tamanho da m√°scara coloca zeros a esquerda.
 	    for(int i = builder.length(); i < mask.length(); i++){
 	    	builder.append(mask.charAt(i)=='.' ? mask.charAt(i) : "0");
 	    }

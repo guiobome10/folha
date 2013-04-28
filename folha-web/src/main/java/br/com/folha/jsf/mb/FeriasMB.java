@@ -106,7 +106,7 @@ public class FeriasMB implements Serializable{
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edição das ferias " + ((Ferias)event.getObject())+ " foi cancelada");
+    	JSFUtil.addInfoMessage("EdiÃ§Ã£o das ferias " + ((Ferias)event.getObject())+ " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {  

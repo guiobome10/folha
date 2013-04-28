@@ -29,7 +29,7 @@ public class TituloConverter implements Converter{
 	            encontrouCaracterInvalido = true;
 	    }
 	    if (encontrouCaracterInvalido) {
-	      FacesMessage message = new FacesMessage("Ocorreu um erro de conversão. ","N�mero t�tulo eleitor inv�lido");
+	      FacesMessage message = new FacesMessage("Ocorreu um erro de conversão. ","Número t�tulo eleitor inválido");
 	      message.setSeverity(FacesMessage.SEVERITY_ERROR);
 	      throw new ConverterException(message);
 	    }
@@ -39,7 +39,7 @@ public class TituloConverter implements Converter{
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
 		//999999999999
-	    //9999 9999 9999 - como ser� exibido
+	    //9999 9999 9999 - como será exibido
 	    String v = arg2.toString();
 	    StringBuilder builder = new StringBuilder();
 	    int tam = v.length();

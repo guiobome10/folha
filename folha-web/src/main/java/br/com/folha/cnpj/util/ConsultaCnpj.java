@@ -35,25 +35,25 @@ import br.com.folha.utils.StringUtil;
 
 public class ConsultaCnpj {
 
-	private static final String NUMERO_INSCRICAO = "N�MERO DE INSCRI��O";
+	private static final String NUMERO_INSCRICAO = "NÚMERO DE INSCRIÇÃO";
 	private boolean isNumeroInscricao;
 	private boolean isMatrizFilial;
 	private static final String DATA_ABERTURA = "DATA DE ABERTURA";
 	private boolean isDataAbertura;
 	private static final String NOME_EMPRESARIAL = "NOME EMPRESARIAL";
 	private boolean isNomeEmpresarial;
-	private static final String NOME_FANTASIA = "T�TULO DO ESTABELECIMENTO (NOME DE FANTASIA)";
+	private static final String NOME_FANTASIA = "TÍTULO DO ESTABELECIMENTO (NOME DE FANTASIA)";
 	private boolean isNomeFantasia;
-	private static final String CODIGO_DESCRICAO_ATIVIDADE_PRINCIPAL = "C�DIGO E DESCRI��O DA ATIVIDADE ECON�MICA PRINCIPAL";
+	private static final String CODIGO_DESCRICAO_ATIVIDADE_PRINCIPAL = "CÓDIGO E DESCRIÇÃO DA ATIVIDADE ECONÔMICA PRINCIPAL";
 	private boolean isCodigoDescricaoAtividadePrincipal;
-	private static final String CODIGO_DESCRICAO_ATIVIDADES_SECUNDARIAS = "C�DIGO E DESCRI��O DAS ATIVIDADES ECON�MICAS SECUND�RIAS";
+	private static final String CODIGO_DESCRICAO_ATIVIDADES_SECUNDARIAS = "CÓDIGO E DESCRIÇÃO DAS ATIVIDADES ECONÔMICAS SECUNDÁRIAS";
 	private boolean isCodigoDescricaoAtividadesSecundarias;
 	private static final String ATIVIDADE_NAO_INFORMADA = "Não informada";
-	private static final String CODIGO_DESCRICAO_NATUREZA_JURIDICA = "C�DIGO E DESCRI��O DA NATUREZA JUR�DICA";
+	private static final String CODIGO_DESCRICAO_NATUREZA_JURIDICA = "CÓDIGO E DESCRIÇÃO DA NATUREZA JURÍDICA";
 	private boolean isCodigoDescricaoNaturezaJuridica;
 	private static final String LOGRADOURO = "LOGRADOURO";
 	private boolean isLogradouro;
-	private static final String NUMERO = "N�MERO"; 
+	private static final String NUMERO = "NÚMERO"; 
 	private static final String SEM_NUMERO = "S/N";
 	private boolean isNumero;
 	private static final String COMPLEMENTO = "COMPLEMENTO";
@@ -62,19 +62,19 @@ public class ConsultaCnpj {
 	private boolean isCep;
 	private static final String BAIRRO = "BAIRRO/DISTRITO";
 	private boolean isBairro;
-	private static final String MUNICIPIO = "MUNIC�PIO";
+	private static final String MUNICIPIO = "MUNICÍPIO";
 	private boolean isMunicipio;
 	private static final String UF = "UF";
 	private boolean isUf;
-	private static final String SITUACAO_CADASTRAL = "SITUA��O CADASTRAL";
+	private static final String SITUACAO_CADASTRAL = "SITUAÇÃO CADASTRAL";
 	private boolean isSituacaoCadastral;
-	private static final String DATA_SITUACAO_CADASTRAL = "DATA DA SITUA��O CADASTRAL";
+	private static final String DATA_SITUACAO_CADASTRAL = "DATA DA SITUAÇÃO CADASTRAL";
 	private boolean isDataSituacaoCadastral;
-	private static final String MOTIVO_SITUACAO_CADASTRAL = "MOTIVO DE SITUA��O CADASTRAL";
+	private static final String MOTIVO_SITUACAO_CADASTRAL = "MOTIVO DE SITUAÇÃO CADASTRAL";
 	private boolean isMotivoSituacaoCadastral;
-	private static final String SITUACAO_ESPECIAL = "SITUA��O ESPECIAL";
+	private static final String SITUACAO_ESPECIAL = "SITUAÇÃO ESPECIAL";
 	private boolean isSituacaoEspecial;
-	private static final String DATA_SITUACAO_ESPECIAL = "DATA DA SITUA��O ESPECIAL";
+	private static final String DATA_SITUACAO_ESPECIAL = "DATA DA SITUAÇÃO ESPECIAL";
 	private static final String ASTERISCOS = "********";
 	private static final String ERRO_CONSULTA = "Erro na Consulta";
 	private static final String ERRO_CONSULTA_CNPJ = "Verifique se o mesmo foi digitado corretamente";
@@ -117,11 +117,11 @@ public class ConsultaCnpj {
 //        HttpHost proxy = new HttpHost(strProxyHost, Integer.valueOf(strProxyPort));
 //        cliente.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
           
-		// Adiciona a autentica��o do Proxy
+		// Adiciona a autenticação do Proxy
 //        cliente.getCredentialsProvider().setCredentials( new AuthScope(proxy),
 //				new NTCredentials(strProxyUsername, strProxyPassword, strProxyHost, strProxyDomain));
 
-        // Adicionando um sistema de redire��o  
+        // Adicionando um sistema de redireção  
         cliente.setRedirectStrategy(new LaxRedirectStrategy());  
   
         // Mantendo a conexão sempre ativa  
@@ -189,10 +189,10 @@ public class ConsultaCnpj {
         // Criando o método de acesso  
         HttpPost requisicao3 = new HttpPost("http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/valida.asp");  
   
-        // Lista de par�metros  
+        // Lista de parâmetros  
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();  
   
-        // Adicionando os par�metros  
+        // Adicionando os parâmetros  
         nameValuePairs.add(new BasicNameValuePair("origem", "comprovante"));  
         nameValuePairs.add(new BasicNameValuePair("search_type", "cnpj"));  
         nameValuePairs.add(new BasicNameValuePair("cnpj", cnpj));  
@@ -204,7 +204,7 @@ public class ConsultaCnpj {
         // Encapsulando  
         UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(nameValuePairs, "UTF-8");  
   
-        // A adi��o dos par�metros  
+        // A adição dos parâmetros  
         requisicao3.setEntity(urlEncodedFormEntity);  
   
         // Resposta  
@@ -282,7 +282,7 @@ public class ConsultaCnpj {
 			isDataAbertura = true;
 		}
 
-		//Nome empresarial - Raz�o social
+		//Nome empresarial - Razão social
 		if(isNomeEmpresarial && ultimaTagFont && linha.contains(B)){
 			empresa.setNomeEmpresarial(getValorTag(linha));
 			isNomeEmpresarial = false;
@@ -300,7 +300,7 @@ public class ConsultaCnpj {
 			isNomeFantasia = true;
 		}
 
-		//C�digo e descri��o da atividade principal da empresa
+		//Código e descrição da atividade principal da empresa
 		if(isCodigoDescricaoAtividadePrincipal && ultimaTagFont && linha.contains(B)){
 			String[] vetor = getValorTag(linha).split(" - ");
 			empresa.setCodigoAtividadePrincipal(StringUtil.removePontosETracos(vetor[0]));
@@ -311,7 +311,7 @@ public class ConsultaCnpj {
 			isCodigoDescricaoAtividadePrincipal = true;
 		}
 		
-		//C�digos e descri��es das atividades secundarias.
+		//Códigos e descrições das atividades secundarias.
 		if(isCodigoDescricaoAtividadesSecundarias && ultimaTagFont && linha.contains(B)){
 			if(linha.contains(ATIVIDADE_NAO_INFORMADA)){
 				empresa.getCodigosAtividadesSecundarias().add("0000000");
@@ -331,7 +331,7 @@ public class ConsultaCnpj {
 			isCodigoDescricaoAtividadesSecundarias = false;
 		}
 		
-		//C�digo e descri��o da natureza jur�dica.
+		//Código e descrição da natureza jurídica.
 		if(isCodigoDescricaoNaturezaJuridica && ultimaTagFont && linha.contains(B)){
 			String[] vetor = getValorTag(linha).split(" - ");
 			empresa.setCodigoNaturezaJuridica(StringUtil.removeTracos(vetor[0]));
@@ -342,7 +342,7 @@ public class ConsultaCnpj {
 			isCodigoDescricaoNaturezaJuridica = true;
 		}
 		
-		//Logradouro do endere�o da empresa
+		//Logradouro do endereço da empresa
 		if(isLogradouro && ultimaTagFont && linha.contains(B)){
 			empresa.setLogradouro(getValorTag(linha));
 			isLogradouro = false;
@@ -351,7 +351,7 @@ public class ConsultaCnpj {
 			isLogradouro = true;
 		}
 		
-		//N�mero do endere�o da empresa
+		//Número do endereço da empresa
 		if(isNumero && ultimaTagFont && linha.contains(B)){
 			if(getValorTag(linha).equals(SEM_NUMERO)){
 				empresa.setNumero(new Integer(0));
@@ -364,7 +364,7 @@ public class ConsultaCnpj {
 			isNumero = true;
 		}
 		
-		//Complemento do endere�o da empresa
+		//Complemento do endereço da empresa
 		if(isComplemento && ultimaTagFont && linha.contains(B)){
 			empresa.setComplemento(getValorTag(linha));
 			isComplemento = false;
@@ -373,7 +373,7 @@ public class ConsultaCnpj {
 			isComplemento = true;
 		}
 		
-		//Cep do endere�o da empresa
+		//Cep do endereço da empresa
 		if(isCep && ultimaTagFont && linha.contains(B)){
 			empresa.setCep(StringUtil.removePontosETracos(getValorTag(linha)));
 			isCep = false;
@@ -382,7 +382,7 @@ public class ConsultaCnpj {
 			isCep = true;
 		}
 		
-		//Bairro do endere�o da empresa
+		//Bairro do endereço da empresa
 		if(isBairro && ultimaTagFont && linha.contains(B)){
 			empresa.setBairro(getValorTag(linha));
 			isBairro = false;
@@ -391,7 +391,7 @@ public class ConsultaCnpj {
 			isBairro = true;
 		}
 		
-		//Munic�pio do endere�o da empresa
+		//Município do endereço da empresa
 		if(isMunicipio && ultimaTagFont && linha.contains(B)){
 			empresa.setMunicipio(getValorTag(linha));
 			isMunicipio = false;
@@ -400,7 +400,7 @@ public class ConsultaCnpj {
 			isMunicipio = true;
 		}
 		
-		//Munic�pio do endere�o da empresa
+		//Município do endereço da empresa
 		if(isUf && ultimaTagFont && linha.contains(B)){
 			empresa.setUf(getValorTag(linha));
 			isUf = false;
@@ -461,7 +461,7 @@ public class ConsultaCnpj {
 		}
 		
 		if(linha.contains(ERRO_CONSULTA_CNPJ)){
-			throw new Exception("CNPJ informado não cadastrado na base de dados receita federal ou inv�lido. " + ERRO_CONSULTA_CNPJ);
+			throw new Exception("CNPJ informado não cadastrado na base de dados receita federal ou inválido. " + ERRO_CONSULTA_CNPJ);
 		}
 		
 		ultimaTagFont = linha.contains(FONT);

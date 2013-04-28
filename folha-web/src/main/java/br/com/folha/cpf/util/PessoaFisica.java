@@ -41,7 +41,7 @@ public class PessoaFisica {
 		builder.append("\n");
 		builder.append("nome: " + nome);
 		builder.append("\n");
-		builder.append("situação cadastral: " + situacaoCadastral);
+		builder.append("situaÃ§Ã£o cadastral: " + situacaoCadastral);
 		builder.append("\n");
 		builder.append("digito verificador: " + digitoVerificador);
 		

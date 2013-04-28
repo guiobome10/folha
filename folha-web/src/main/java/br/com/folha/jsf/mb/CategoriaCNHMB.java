@@ -90,7 +90,7 @@ public class CategoriaCNHMB implements Serializable{
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edição da categoria CNH " + ((CategoriaCNH)event.getObject()).getDescricao() + " foi cancelada");
+    	JSFUtil.addInfoMessage("EdiÃ§Ã£o da categoria CNH " + ((CategoriaCNH)event.getObject()).getDescricao() + " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {  

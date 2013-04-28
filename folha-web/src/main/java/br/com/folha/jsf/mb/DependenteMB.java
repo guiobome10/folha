@@ -84,14 +84,14 @@ public class DependenteMB implements Serializable {
 	public void excluir() {
 		try {
 			facade.excluir(dependente);
-			JSFUtil.addInfoMessage("Dependente excluído com sucesso!");
+			JSFUtil.addInfoMessage("Dependente excluï¿½do com sucesso!");
 		} catch (AppException e) {
 			JSFUtil.trataAppExeption(e);
 		}
 	}
 
 	public void onCancel(RowEditEvent event) {
-		JSFUtil.addInfoMessage("Edição do dependente "
+		JSFUtil.addInfoMessage("EdiÃ§Ã£o do dependente "
 				+ ((Dependente) event.getObject()).getNome() + " foi cancelada");
 	}
 
