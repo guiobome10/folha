@@ -292,16 +292,20 @@ public class ConsultaCpf {
         // Baixar o stream  
         entrada = entidade.getContent();  
   
-        ByteArrayOutputStream out;  
-        try (InputStream in = new BufferedInputStream(entrada)) {  
+        ByteArrayOutputStream out = null;  
+        try {
+        	InputStream in = new BufferedInputStream(entrada);
             out = new ByteArrayOutputStream();  
             byte[] buf = new byte[1024];  
             int n = 0;  
             while (-1 != (n = in.read(buf))) {  
                 out.write(buf, 0, n);  
             }  
-            out.close();  
-        }  
+        } finally{
+        	if(out != null){
+        		out.close();  
+        	}
+        }
          
         String caminho = ((ServletContext)(facesContext.getExternalContext().getContext())).getRealPath("img");
         String captchaFileName = "captchaCpf"+ (int)(Math.random() * 100) +".jpeg";
