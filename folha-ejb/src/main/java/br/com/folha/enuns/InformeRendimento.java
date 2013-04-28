@@ -2,8 +2,8 @@ package br.com.folha.enuns;
 
 public enum InformeRendimento {
 
-	NAO_CONSIDERAR('N', "N„o Considerar"), RENDIMENTO_TRIBUTAVEL('R', "Rendimento Tribut·vel")
-	, DEDUCAO_INSS('I', "DeduÁ„o INSS"), DEDUCAO_PENSAO('P', "DeduÁ„o Pens„o");
+	NAO_CONSIDERAR('N', "N√£o Considerar"), RENDIMENTO_TRIBUTAVEL('R', "Rendimento Tribut√°vel")
+	, DEDUCAO_INSS('I', "Dedu√ß√£o INSS"), DEDUCAO_PENSAO('P', "Dedu√ß√£o Pens√£o");
 	
 	private char sigla;
 	private String valor;

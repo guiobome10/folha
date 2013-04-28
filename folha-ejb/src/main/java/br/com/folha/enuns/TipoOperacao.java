@@ -2,7 +2,7 @@ package br.com.folha.enuns;
 
 public enum TipoOperacao {
 
-	INSERCAO('I', "Inserção"), ATUALIZACAO('A', "Atualização"), EXCLUSAO('E', "Excluir"), 
+	INSERCAO('I', "InserÃ§Ã£o"), ATUALIZACAO('A', "AtualizaÃ§Ã£o"), EXCLUSAO('E', "Excluir"), 
 	CONSULTA('C', "Consulta"), LISTAGEM('L', "Listagem");
 
 	private char tipoOperacao;

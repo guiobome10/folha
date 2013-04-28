@@ -33,7 +33,7 @@ public class Estado {
 
 	public Estado() {
 		this.sigla = "PR";
-		this.nome = "Paran·";
+		this.nome = "Paran√°";
 	}
 	
 	public String getSigla() {

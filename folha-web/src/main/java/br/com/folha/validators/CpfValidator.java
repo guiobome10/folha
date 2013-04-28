@@ -15,16 +15,16 @@ public class CpfValidator implements Validator {
     	 if (!validaCPF(String.valueOf(valorTela))) {
                FacesMessage message = new FacesMessage();
                message.setSeverity(FacesMessage.SEVERITY_ERROR);
-               message.setSummary("Erro na validação do cpf. Verifique o cpf digitado.");
+               message.setSummary("Erro na validaï¿½ï¿½o do cpf. Verifique o cpf digitado.");
                throw new ValidatorException(message);
           }
      }
  
      /**
-     * Valida CPF do usuário. Não aceita CPF's padrões como
+     * Valida CPF do usuï¿½rio. NÃ£o aceita CPF's padrï¿½es como
      * 11111111111 ou 22222222222
      *
-     * @param cpf String valor com 11 dígitos
+     * @param cpf String valor com 11 dï¿½gitos
      */
      private static boolean validaCPF(String cpf) {
           if (cpf == null || cpf.length() != 11 || isCPFPadrao(cpf))
@@ -32,7 +32,7 @@ public class CpfValidator implements Validator {
  
           try {
                Long.parseLong(cpf);
-          } catch (NumberFormatException e) { // CPF não possui somente números
+          } catch (NumberFormatException e) { // CPF nÃ£o possui somente nÃºmeros
         	  return false;
           }
  
@@ -45,7 +45,7 @@ public class CpfValidator implements Validator {
      /**
      *
      * @param cpf String valor a ser testado
-     * @return boolean indicando se o usuário entrou com um CPF padrão
+     * @return boolean indicando se o usuï¿½rio entrou com um CPF padrï¿½o
      */
      private static boolean isCPFPadrao(String cpf) {
           if (cpf.equals("11111111111") || cpf.equals("22222222222")

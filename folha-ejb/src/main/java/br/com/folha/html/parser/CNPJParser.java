@@ -69,7 +69,7 @@ public class CNPJParser extends DefaultHandler{
 		    String value = parameters.getProperty(name);  
 		  
 		    // adiciona com um conector (? ou &)  
-		    // o primeiro È ?, depois s„o &  
+		    // o primeiro √© ?, depois s√£o &  
 		    urlString += (++counter == 1 ? "?" : "&")  
 		        + name  
 		        + "="  
@@ -85,7 +85,7 @@ public class CNPJParser extends DefaultHandler{
 		
 		conexao.connect();
 		
-		//abre a conex„o para input
+		//abre a conex√£o para input
 		BufferedReader br = new BufferedReader(new InputStreamReader(conexao.getInputStream()));
 		
 		newData = new StringBuffer(10000);
@@ -99,10 +99,10 @@ public class CNPJParser extends DefaultHandler{
 		FileOutputStream fos = new FileOutputStream(arquivo);
 		PrintWriter out = new PrintWriter(fos, true);
 		
-		//imprime o cÛdigo resultante
+		//imprime o c√≥digo resultante
 		out.println(new String(newData));
 		
-		//imprime o n˙mero do resultado
+		//imprime o n√∫mero do resultado
 		//out.println("Resultado: " + conexao.getResponseCode() + "/" + conexao.getResponseMessage() );
 		fos.close();
 		request.parseXML();
@@ -148,8 +148,8 @@ public class CNPJParser extends DefaultHandler{
 	
 	/** 
 	 * Indica que o parser achou o fim de uma tag/elemento.
-	 * Este evento fornece o nome do elemento, e tambÈm pode
-	 * fornecer as informaÁıes sobre o namespace.
+	 * Este evento fornece o nome do elemento, e tamb√©m pode
+	 * fornecer as informa√ß√µes sobre o namespace.
 	 */
 	public void endElement(String uri, String localName, String tag)
 			throws SAXException {
@@ -157,7 +157,7 @@ public class CNPJParser extends DefaultHandler{
 		if (tag.equalsIgnoreCase(WEBSERVICE_CEP)){
 			System.out.println();
 		} 
-		//sen„o, seta os atributos do contato
+		//sen√£o, seta os atributos do contato
 		else if (tag.equalsIgnoreCase(IMG) && isCaptcha){
 			
 		} else if (tag.equalsIgnoreCase(RESULTADO_TXT)){
@@ -180,7 +180,7 @@ public class CNPJParser extends DefaultHandler{
 	}
 	
 	/**
-	 * Indica que o parser achou algum Texto (InformaÁ„o).
+	 * Indica que o parser achou algum Texto (Informa√ß√£o).
 	 */
 	public void characters(char[] ch, int start, int length) {
 		System.out.println(String.copyValueOf(ch,start,length).trim());
@@ -200,7 +200,7 @@ public class CNPJParser extends DefaultHandler{
 		
 		conexao.connect();
 		
-		//abre a conex„o para input
+		//abre a conex√£o para input
 		BufferedReader br = new BufferedReader(new InputStreamReader(conexao.getInputStream()));
 		newData = new StringBuffer(10000);
 		boolean ignoraLinha = false;
@@ -258,10 +258,10 @@ public class CNPJParser extends DefaultHandler{
 		FileOutputStream fos = new FileOutputStream(arquivo);
 		PrintWriter out = new PrintWriter(fos, true);
 		
-		//imprime o cÛdigo resultante
+		//imprime o c√≥digo resultante
 		out.println(new String(newData));
 		
-		//imprime o n˙mero do resultado
+		//imprime o n√∫mero do resultado
 		//out.println("Resultado: " + conexao.getResponseCode() + "/" + conexao.getResponseMessage() );
 		fos.close();
 		return null;

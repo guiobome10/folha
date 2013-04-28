@@ -147,7 +147,7 @@ public class SindicatoMB implements Serializable{
 				sindicato.setCep(empresaRFB.getCep());
 				trataCep();
 			} else {
-				JSFUtil.addErrorMessage("O cnpj informado não é de sindicato.");
+				JSFUtil.addErrorMessage("O cnpj informado nÃ£o Ã© de sindicato.");
 			}
 		} catch (Exception e) {
 			JSFUtil.trataAppExeption(e);
@@ -179,14 +179,14 @@ public class SindicatoMB implements Serializable{
 	public void excluir(){
 		try {
 			facade.excluir(sindicato);
-			JSFUtil.addInfoMessage("Sindicato excluído com sucesso!");
+			JSFUtil.addInfoMessage("Sindicato excluï¿½do com sucesso!");
 		} catch (AppException e) {
 			JSFUtil.trataAppExeption(e);
 		}		
 	}
 
     public void onCancel(RowEditEvent event) {  
-    	JSFUtil.addInfoMessage("Edição do sindicato " + ((Sindicato)event.getObject()).getRazaoSocial() + " foi cancelada");
+    	JSFUtil.addInfoMessage("Ediï¿½ï¿½o do sindicato " + ((Sindicato)event.getObject()).getRazaoSocial() + " foi cancelada");
     } 
     
     public void onEdit(RowEditEvent event) {  

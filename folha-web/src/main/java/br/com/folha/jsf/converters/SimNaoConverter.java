@@ -15,6 +15,6 @@ public class SimNaoConverter implements Converter{
 
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent componente, Object arg2) {
-    	return (Boolean)arg2 ? "Sim" : "Não";
+    	return (Boolean)arg2 ? "Sim" : "NÃ£o";
   }	    
 }

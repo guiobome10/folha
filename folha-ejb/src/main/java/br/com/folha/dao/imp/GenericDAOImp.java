@@ -124,7 +124,7 @@ public abstract class GenericDAOImp<T> implements GenericDAO<T>{
 	@Override
 	public List<T> listarLazy(int primeiroRegistro, int quantidadePagina, String campoOrdenacao,
 			SortOrder ordenacao, Map<String, String> filtros){
-		// Cria critério de busca
+		// Cria critÃ©rio de busca
 		CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
 		CriteriaQuery<T> criteria = builder.createQuery(entityClass);
 		Root<T> from = criteria.from(entityClass);
@@ -133,7 +133,7 @@ public abstract class GenericDAOImp<T> implements GenericDAO<T>{
 	 	//Filtro vindo do datatable
 		List<Predicate> predicates = new ArrayList<Predicate>(); 
 		
-		//Realiza ordenação
+		//Realiza ordenaÃ§Ã£o
 		if(ordenacao != null && campoOrdenacao != null){
 			switch (ordenacao) {
 			case ASCENDING:

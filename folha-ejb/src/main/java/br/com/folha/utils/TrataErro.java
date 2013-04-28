@@ -16,7 +16,7 @@ public class TrataErro {
 	public static void trataParametroNull(Object t) throws AppException {
 		if (t == null) {
 			throw new AppException(
-					"Parametro nulo não é permitido para este método",
+					"Parametro nulo nÃ£o Ã© permitido para este mÃ©todo",
 					TipoException.ERROR);
 		}
 	}
@@ -25,7 +25,7 @@ public class TrataErro {
 			throws AppException {
 		if (t == null) {
 			throw new AppException(
-					"Parametro nulo não é permitido para a operação de "
+					"Parametro nulo nÃ£o Ã© permitido para a operaÃ§Ã£o de "
 							+ tipoOperacao.getValue(), TipoException.ERROR);
 		}
 	}
@@ -52,7 +52,7 @@ public class TrataErro {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		throw new AppException("Parametro com Id nulo não é permitido para a operação de " + tipoOperacao.getValue(), TipoException.ERROR);
+		throw new AppException("Parametro com Id nulo nÃ£o Ã© permitido para a operaÃ§Ã£o de " + tipoOperacao.getValue(), TipoException.ERROR);
 	}
 	
 	public static Field getCampoComAnotacaoId(Object o) throws AppException{
@@ -64,7 +64,7 @@ public class TrataErro {
 			}
 		}
 		if(fieldComAnotacaoId == null){
-			throw new AppException("A classe do objeto passado como parametro não possui a anotação @Id.", TipoException.ERROR);
+			throw new AppException("A classe do objeto passado como parametro nÃ£o possui a anotaï¿½ï¿½o @Id.", TipoException.ERROR);
 		}
 		return fieldComAnotacaoId;
 	}
@@ -87,22 +87,22 @@ public class TrataErro {
 	
 	public static void trataIdZerado(Long id) throws AppException{
 		if(id.equals(new Long(0)))
-			throw new AppException("Id zerado não é permitido para essa operação.", TipoException.ERROR);
+			throw new AppException("Id zerado nÃ£o Ã© permitido para essa operaÃ§Ã£o.", TipoException.ERROR);
 	}
 
 	public static void trataIdZerado(Long id, TipoOperacao tipoOperacao) throws AppException{
 		if(id.equals(new Long(0)))
-			throw new AppException("Id zerado não é permitido para a operação de" + tipoOperacao.getValue(), TipoException.ERROR);
+			throw new AppException("Id zerado nÃ£o Ã© permitido para a operaÃ§Ã£o de" + tipoOperacao.getValue(), TipoException.ERROR);
 	}
 	
 	public static void trataParametroVazio(String parametro) throws AppException{
 		if(parametro.trim().isEmpty())
-			throw new AppException("Paramêtro vazio não é permitido para essa operação.", TipoException.ERROR);
+			throw new AppException("ParamÃªtro vazio nÃ£o Ã© permitido para essa operaÃ§Ã£o.", TipoException.ERROR);
 	}
 	
 	public static void trataParametroVazio(String parametro, TipoOperacao tipoOperacao) throws AppException{
 		if(parametro.trim().isEmpty())
-			throw new AppException("Paramêtro vazio não é permitido para a operação de" + tipoOperacao.getValue(), TipoException.ERROR);
+			throw new AppException("ParamÃªtro vazio nÃ£o Ã© permitido para a operaÃ§Ã£o de" + tipoOperacao.getValue(), TipoException.ERROR);
 	}
 	
 }

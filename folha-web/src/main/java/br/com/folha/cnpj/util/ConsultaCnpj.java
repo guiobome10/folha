@@ -48,7 +48,7 @@ public class ConsultaCnpj {
 	private boolean isCodigoDescricaoAtividadePrincipal;
 	private static final String CODIGO_DESCRICAO_ATIVIDADES_SECUNDARIAS = "C�DIGO E DESCRI��O DAS ATIVIDADES ECON�MICAS SECUND�RIAS";
 	private boolean isCodigoDescricaoAtividadesSecundarias;
-	private static final String ATIVIDADE_NAO_INFORMADA = "N�o informada";
+	private static final String ATIVIDADE_NAO_INFORMADA = "Não informada";
 	private static final String CODIGO_DESCRICAO_NATUREZA_JURIDICA = "C�DIGO E DESCRI��O DA NATUREZA JUR�DICA";
 	private boolean isCodigoDescricaoNaturezaJuridica;
 	private static final String LOGRADOURO = "LOGRADOURO";
@@ -124,7 +124,7 @@ public class ConsultaCnpj {
         // Adicionando um sistema de redire��o  
         cliente.setRedirectStrategy(new LaxRedirectStrategy());  
   
-        // Mantendo a conex�o sempre ativa  
+        // Mantendo a conexão sempre ativa  
         cliente.setKeepAliveStrategy(new DefaultConnectionKeepAliveStrategy());  
   
         // Criando o container de cookies  
@@ -132,15 +132,15 @@ public class ConsultaCnpj {
   
         contexto = new BasicHttpContext();  
   
-        // Adicionando o coockie store no contexto de conex�o  
+        // Adicionando o coockie store no contexto de conexão  
         contexto.setAttribute(ClientContext.COOKIE_STORE, cookie);  
   
-        // Criando o m�todo de acesso  
+        // Criando o método de acesso  
         HttpGet requisicaoo1 = new HttpGet("http://www.receita.fazenda.gov.br/PessoaJuridica/CNPJ/cnpjreva/Cnpjreva_Solicitacao2.asp");  
   
         resposta = cliente.execute(requisicaoo1, contexto);  
   
-//        // Escrever informa��es  
+//        // Escrever informações  
 //        System.out.println("Status Line: " + resposta.getStatusLine());  
 //  
 //        // Separador  
@@ -150,7 +150,7 @@ public class ConsultaCnpj {
   
         entidade = resposta.getEntity();  
   
-//        // Escrever informa��es  
+//        // Escrever informações  
 //        System.out.println("Encoding: " + entidade.getContentEncoding());  
 //        System.out.println("Tamanho: " + entidade.getContentLength());  
 //        System.out.println("Tipo: " + entidade.getContentType());  
@@ -186,7 +186,7 @@ public class ConsultaCnpj {
 	
 	public EmpresaReceita consultarCnpj(String cnpj, String captcha) throws Exception {
 		
-        // Criando o m�todo de acesso  
+        // Criando o método de acesso  
         HttpPost requisicao3 = new HttpPost("http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/valida.asp");  
   
         // Lista de par�metros  
@@ -210,7 +210,7 @@ public class ConsultaCnpj {
         // Resposta  
         resposta = cliente.execute(requisicao3, contexto);  
   
-        // Escrever informa��es  
+        // Escrever informações  
 //        System.out.println("Status Line: " + resposta.getStatusLine());  
   
         // Separador  
@@ -221,7 +221,7 @@ public class ConsultaCnpj {
         // Buscando a entidade  
         entidade = resposta.getEntity();  
   
-        // Escrever informa��es  
+        // Escrever informações  
 //        System.out.println("Encoding: " + entidade.getContentEncoding());  
 //        System.out.println("Tamanho: " + entidade.getContentLength());  
 //        System.out.println("Tipo: " + entidade.getContentType());  
@@ -258,7 +258,7 @@ public class ConsultaCnpj {
 
 	private void trataResposta(String linha) throws ParseException, Exception {
 
-		//Numero inscricao e se � matriz ou filial
+		//Numero inscricao e se é matriz ou filial
 		if(isMatrizFilial && linha.contains(B)){
 			empresa.setMatrizFilial(getValorTag(linha));
 			isMatrizFilial = false;
@@ -457,11 +457,11 @@ public class ConsultaCnpj {
 		}
 		
 		if(linha.contains(ERRO_CONSULTA)){
-			throw new Exception("Caracteres informados n�o correspondem a imagem.");
+			throw new Exception("Caracteres informados não correspondem a imagem.");
 		}
 		
 		if(linha.contains(ERRO_CONSULTA_CNPJ)){
-			throw new Exception("CNPJ informado n�o cadastrado na base de dados receita federal ou inv�lido. " + ERRO_CONSULTA_CNPJ);
+			throw new Exception("CNPJ informado não cadastrado na base de dados receita federal ou inv�lido. " + ERRO_CONSULTA_CNPJ);
 		}
 		
 		ultimaTagFont = linha.contains(FONT);
@@ -493,7 +493,7 @@ public class ConsultaCnpj {
         // Resposta  
         resposta = cliente.execute(requisicao2, contexto);  
   
-        // Escrever informa��es  
+        // Escrever informações  
 //        System.out.println("Status Line: " + resposta.getStatusLine());  
   
         // Separador  
@@ -504,7 +504,7 @@ public class ConsultaCnpj {
         // Buscando a entidade  
         entidade = resposta.getEntity();  
   
-        // Escrever informa��es  
+        // Escrever informações  
 //        System.out.println("Encoding: " + entidade.getContentEncoding());  
 //        System.out.println("Tamanho: " + entidade.getContentLength());  
 //        System.out.println("Tipo: " + entidade.getContentType());  

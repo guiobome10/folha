@@ -72,7 +72,7 @@ public class EntityConverter implements Converter {
   
   
     /** 
-     * Retorna a representa��o em String do retorno do m�todo anotado com @Id ou @EmbeddedId do objeto. 
+     * Retorna a representa��o em String do retorno do método anotado com @Id ou @EmbeddedId do objeto. 
      * 
      * @param Class<?> clazz 
      *             

@@ -35,7 +35,7 @@ public class CnpjConverter implements Converter{
 	        		 encontrouCaracterInvalido = true;
 	    }
 	    if (encontrouCaracterInvalido) {
-	      FacesMessage message = new FacesMessage("Ocorreu um erro de conversão. ","CNPJ inválido");
+	      FacesMessage message = new FacesMessage("Ocorreu um erro de conversÃ£o. ","CNPJ invï¿½lido");
 	      message.setSeverity(FacesMessage.SEVERITY_ERROR);
 	      throw new ConverterException(message);
 	    }
@@ -45,7 +45,7 @@ public class CnpjConverter implements Converter{
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
 		//012345678901234
-	    //11.111.111/1111-11 - como será exibido
+	    //11.111.111/1111-11 - como serï¿½ exibido
 	    String v = arg2.toString();
 	    StringBuilder builder = new StringBuilder();
 	    int tam = v.length();

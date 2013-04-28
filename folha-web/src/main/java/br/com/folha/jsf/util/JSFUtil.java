@@ -119,7 +119,7 @@ public class JSFUtil {
 			}
 		} else {
 			/*
-			 * Lança Erro genérico
+			 * LanÂºa Erro genÂºrico
 			 */
 			addErrorMessage("Ocorreu uma falha inesperada no sistema. Erro: "
 					+ e.getMessage());

@@ -7,8 +7,8 @@ public enum TipoFolhaPagamento {
 
 	ADIANTAMENTO("Adiantamento"), 
 	PAGAMENTO("Pagamento"),
-	PRIMEIRA_PARCELA_13("Primeira parcela 13บ"), 
-	SEGUNDA_PARCELA_13("Segunda parcela 13บ"); 
+	PRIMEIRA_PARCELA_13("Primeira parcela 13ยบ"), 
+	SEGUNDA_PARCELA_13("Segunda parcela 13ยบ"); 
 
 	private String descricao;
 

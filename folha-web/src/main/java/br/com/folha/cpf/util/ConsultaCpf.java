@@ -82,7 +82,7 @@ public class ConsultaCpf {
         // Adicionando um sistema de redire��o  
         cliente.setRedirectStrategy(new LaxRedirectStrategy());  
   
-        // Mantendo a conex�o sempre ativa  
+        // Mantendo a conexão sempre ativa  
         cliente.setKeepAliveStrategy(new DefaultConnectionKeepAliveStrategy());  
   
         // Criando o container de cookies  
@@ -90,15 +90,15 @@ public class ConsultaCpf {
   
         contexto = new BasicHttpContext();  
   
-        // Adicionando o coockie store no contexto de conex�o  
+        // Adicionando o coockie store no contexto de conexão  
         contexto.setAttribute(ClientContext.COOKIE_STORE, cookie);  
   
-        // Criando o m�todo de acesso  
+        // Criando o método de acesso  
         HttpGet requisicaoo1 = new HttpGet("http://www.receita.fazenda.gov.br/Aplicacoes/ATCTA/cpf/ConsultaPublica.asp");  
   
         resposta = cliente.execute(requisicaoo1, contexto);  
   
-//        // Escrever informa��es  
+//        // Escrever informações  
 //        System.out.println("Status Line: " + resposta.getStatusLine());  
 //  
 //        // Separador  
@@ -108,7 +108,7 @@ public class ConsultaCpf {
   
         entidade = resposta.getEntity();  
   
-//        // Escrever informa��es  
+//        // Escrever informações  
 //        System.out.println("Encoding: " + entidade.getContentEncoding());  
 //        System.out.println("Tamanho: " + entidade.getContentLength());  
 //        System.out.println("Tipo: " + entidade.getContentType());  
@@ -144,7 +144,7 @@ public class ConsultaCpf {
 	
 	public PessoaFisica consultarCpf(String cpf, String captcha) throws Exception {
 		
-        // Criando o m�todo de acesso  
+        // Criando o método de acesso  
         HttpPost requisicao3 = new HttpPost("http://www.receita.fazenda.gov.br/Aplicacoes/ATCTA/CPF/ConsultaPublicaExibir.asp");  
   
         // Lista de par�metros  
@@ -168,7 +168,7 @@ public class ConsultaCpf {
         // Resposta  
         resposta = cliente.execute(requisicao3, contexto);  
   
-        // Escrever informa��es  
+        // Escrever informações  
 //        System.out.println("Status Line: " + resposta.getStatusLine());  
   
         // Separador  
@@ -179,7 +179,7 @@ public class ConsultaCpf {
         // Buscando a entidade  
         entidade = resposta.getEntity();  
   
-        // Escrever informa��es  
+        // Escrever informações  
 //        System.out.println("Encoding: " + entidade.getContentEncoding());  
 //        System.out.println("Tamanho: " + entidade.getContentLength());  
 //        System.out.println("Tipo: " + entidade.getContentType());  
@@ -231,7 +231,7 @@ public class ConsultaCpf {
 			}
 		}
 		if(linha.contains(CONTEUDO_ERRO)){
-			throw new Exception("CPF n�o encontrado na receita federal ou inv�lido. Por favor verifique se o cpf foi digitado corretamente.");
+			throw new Exception("CPF não encontrado na receita federal ou inv�lido. Por favor verifique se o cpf foi digitado corretamente.");
 		}
 		if(erro && linha.contains(SPAN_ERRO)){
 			erro = false;
@@ -268,7 +268,7 @@ public class ConsultaCpf {
         // Resposta  
         resposta = cliente.execute(requisicao2, contexto);  
   
-        // Escrever informa��es  
+        // Escrever informações  
 //        System.out.println("Status Line: " + resposta.getStatusLine());  
   
         // Separador  
@@ -279,7 +279,7 @@ public class ConsultaCpf {
         // Buscando a entidade  
         entidade = resposta.getEntity();  
   
-        // Escrever informa��es  
+        // Escrever informações  
 //        System.out.println("Encoding: " + entidade.getContentEncoding());  
 //        System.out.println("Tamanho: " + entidade.getContentLength());  
 //        System.out.println("Tipo: " + entidade.getContentType());  

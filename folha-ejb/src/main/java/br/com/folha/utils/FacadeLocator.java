@@ -14,16 +14,16 @@ import br.com.folha.exception.AppException;
 public class FacadeLocator {
 
 	/*
-	 * Vari·veis comuns do Service Locator
+	 * VariÔøΩveis comuns do Service Locator
 	 */
 	private static InitialContext initialContext;
 	public static final String LOCAL = "local";
 	public static final String REMOTE = "remote";
-	private static final String EARNAME = "java:global/folhaEar/Folha-Pagamento-EJB";
+	private static final String EARNAME = "java:global/folha-ear/folha-ejb";
 
 	/**
-	 * MÈtodo respons·vel por retornar o nome do ear que foi publicado.
-	 * Necess·rio para realizar o lookUp nos servicos disponibilizados.
+	 * M√©todo respons√°vel por retornar o nome do ear que foi publicado.
+	 * Necess√°rio para realizar o lookUp nos servicos disponibilizados.
 	 * @return
 	 */
 	private static String getEarName() {
@@ -31,7 +31,7 @@ public class FacadeLocator {
 	}
 
 	/**
-	 * Construtor do Contexto de InicializaÁ„o do JNDI do Servidor de AplicaÁıes
+	 * Construtor do Contexto de Inicializa√ß√£o do JNDI do Servidor de Aplica√ß√µes
 	 */
 	private static Context getInitialContext() throws NamingException {
 		initialContext = new InitialContext();
@@ -39,23 +39,23 @@ public class FacadeLocator {
 	}
 
 	/**
-	 * Recupera o facade publicado no servidor atravÈs da interface.
+	 * Recupera o facade publicado no servidor atrav√©s da interface.
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T getService(Class<T> t) throws Exception, IllegalArgumentException {
 		if(t == null)
-			throw new IllegalArgumentException("Null n„o È um valor valido para obter o facade.");
+			throw new IllegalArgumentException("Null n√£o √© um valor valido para obter o facade.");
 		Local local = t.getAnnotation(Local.class);
 		Remote remote = t.getAnnotation(Remote.class);
 		if(local == null && remote == null){
-			throw new IllegalArgumentException("A classe passada como argumento n„o È um EJB Local ou Remoto.");
+			throw new IllegalArgumentException("A classe passada como argumento n√£o √© um EJB Local ou Remoto.");
 		}
 		try {
 			String facade = getEarName() + "/" + t.getSimpleName() + "!" + t.getPackage().getName() +"." + t.getSimpleName();
 			return (T) getInitialContext().lookup(facade);
 		} catch (NamingException e) {
 			e.printStackTrace();
-			throw new AppException("N„o foi possÌvel execuÁ„o a operaÁ„o desejada. Erro: "	+ e.getMessage(), TipoException.ERROR);
+			throw new AppException("N√£o foi poss√≠vel execu√ß√£o a opera√ß√£o desejada. Erro: "	+ e.getMessage(), TipoException.ERROR);
 		}
 	}
 

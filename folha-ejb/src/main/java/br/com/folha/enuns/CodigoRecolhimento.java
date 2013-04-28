@@ -5,24 +5,24 @@ import java.util.List;
 
 public enum CodigoRecolhimento {
 
-	COD_115(115L, "Recolhimento ao FGTS e informações à Previdência Social"),
-	COD_130(130l, "Recolhimento ao FGTS e informações à Previdência Social relativas ao trabalhador avulso portuário"),
-	COD_135(135L, "Recolhimento ao FGTS e informações à Previdência Social relativas ao trabalhador avulso não portuário"),
-	COD_145(145L, "Recolhimento ao FGTS de diferenças apuradas pela CAIXA"),
-	COD_150(150L, "Recolhimento ao FGTS e informações à Previdência Social de empresa prestadora de serviços com cessão de mão-de-obra e empresa de trabalho temporário (Lei nº 6.019/74), em relação aos empregados cedidos, ou de obra de construção civil – empreitada parcial"),
-	COD_155(155L, "Recolhimento ao FGTS e informações à Previdência Social de obra de construção civil – empreitada total ou obra própria"),
-	COD_211(211L, "Declaração para a Previdência Social de cooperativa de trabalho relativa aos contribuintes individuais cooperados que prestam serviços a tomadores"),
+	COD_115(115L, "Recolhimento ao FGTS e informaÃ§Ãµes Ã© PrevidÃªncia Social"),
+	COD_130(130l, "Recolhimento ao FGTS e informaÃ§Ãµes Ã© PrevidÃªncia Social relativas ao trabalhador avulso portuÃ¡rio"),
+	COD_135(135L, "Recolhimento ao FGTS e informaÃ§Ãµes Ã© PrevidÃªncia Social relativas ao trabalhador avulso nÃ£o portuÃ¡rio"),
+	COD_145(145L, "Recolhimento ao FGTS de diferenÃ§as apuradas pela CAIXA"),
+	COD_150(150L, "Recolhimento ao FGTS e informaÃ§Ãµes Ã© PrevidÃªncia Social de empresa prestadora de serviÃ§os com cessÃ£o de mÃ£o-de-obra e empresa de trabalho temporÃ¡rio (Lei nÂº 6.019/74), em relaÃ§Ã£o aos empregados cedidos, ou de obra de construÃ§Ã£o civil Ã© empreitada parcial"),
+	COD_155(155L, "Recolhimento ao FGTS e informaÃ§Ãµes Ã© PrevidÃªncia Social de obra de construÃ§Ã£o civil Ã© empreitada total ou obra prÃ³pria"),
+	COD_211(211L, "DeclaraÃ§Ã£o para a PrevidÃªncia Social de cooperativa de trabalho relativa aos contribuintes individuais cooperados que prestam serviÃ§os a tomadores"),
 	COD_307(307L, "Recolhimento de Parcelamento do FGTS"),
-	COD_317(317L, "Recolhimento de Parcelamento do FGTS de empresa com tomador de serviços"),
-	COD_327(327L, "Recolhimento de Parcelamento de débito com o FGTS, priorizando os valores devidos aos trabalhadores"),
-	COD_337(337L, "Recolhimento de Parcelamento de débito com o FGTS de empresas com tomador de serviços, priorizando os valores devidos aos trabalhadores"),
-	COD_345(345L, "Recolhimento de parcelamento de débito com o FGTS relativo à diferença de recolhimento, priorizando os valores devidos aos trabalhadores"),
+	COD_317(317L, "Recolhimento de Parcelamento do FGTS de empresa com tomador de serviÃ§os"),
+	COD_327(327L, "Recolhimento de Parcelamento de dÃ©bito com o FGTS, priorizando os valores devidos aos trabalhadores"),
+	COD_337(337L, "Recolhimento de Parcelamento de dÃ©bito com o FGTS de empresas com tomador de serviÃ§os, priorizando os valores devidos aos trabalhadores"),
+	COD_345(345L, "Recolhimento de parcelamento de dÃ©bito com o FGTS relativo Ã© diferenÂºa de recolhimento, priorizando os valores devidos aos trabalhadores"),
 	COD_418(418L, "Recolhimento recursal para o FGTS"),
-	COD_604(604L, "Recolhimento ao FGTS de entidades com fins filantrópicos – Decreto-Lei n° 194, de 24/02/1967 (competências anteriores a 10/1989)"),
-	COD_608(608L, "Recolhimento ao FGTS e informações à Previdência Social relativos a dirigente sindical"),
-	COD_640(640L, "Recolhimento ao FGTS para empregado não optante (competência anterior a 10/1988)"),
-	COD_650(650L, "Recolhimento ao FGTS e informações à Previdência Social relativo a Anistiados, Reclamatória Trabalhista, Reclamatória Trabalhista com Reconhecimento de Vínculo, Acordo, Dissídio ou Convenção Coletiva, Comissão de Conciliação Prévia ou Núcleo Intersindical de Conciliação Trabalhista"),
-	COD_660(660L, "Recolhimento exclusivo ao FGTS relativo a Anistiados, Conversão de Licença Saúde em Acidente de Trabalho, Reclamatória Trabalhista, Acordo, Dissídio ou Convenção Coletiva, Comissão de Conciliação Prévia ou Núcleo Intersindical de Conciliação Trabalhista");
+	COD_604(604L, "Recolhimento ao FGTS de entidades com fins filantrÃ³picos Ã© Decreto-Lei nÂº 194, de 24/02/1967 (competÃªncias anteriores a 10/1989)"),
+	COD_608(608L, "Recolhimento ao FGTS e informaÃ§Ãµes Ã© PrevidÃªncia Social relativos a dirigente sindical"),
+	COD_640(640L, "Recolhimento ao FGTS para empregado nÃ£o optante (competÃªncia anterior a 10/1988)"),
+	COD_650(650L, "Recolhimento ao FGTS e informaÃ§Ãµes Ã© PrevidÃªncia Social relativo a Anistiados, ReclamatÃ³ria Trabalhista, ReclamatÃ³ria Trabalhista com Reconhecimento de VÃ­nculo, Acordo, DissÃ­dio ou ConvenÃ§Ã£o Coletiva, ComissÃ£o de ConciliaÃ§Ã£o PrÃ©via ou NÃºcleo Intersindical de ConciliaÃ§Ã£o Trabalhista"),
+	COD_660(660L, "Recolhimento exclusivo ao FGTS relativo a Anistiados, ConversÃ£o de LicenÂºa Saï¿½de em Acidente de Trabalho, ReclamatÃ³ria Trabalhista, Acordo, DissÃ­dio ou ConvenÃ§Ã£o Coletiva, ComissÃ£o de ConciliaÃ§Ã£o PrÃ©via ou NÃºcleo Intersindical de ConciliaÃ§Ã£o Trabalhista");
 	
 	private Long codigo;
 	private String descricao;
