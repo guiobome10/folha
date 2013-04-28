@@ -310,10 +310,15 @@ public class ConsultaCpf {
         String caminho = ((ServletContext)(facesContext.getExternalContext().getContext())).getRealPath("img");
         String captchaFileName = "captchaCpf"+ (int)(Math.random() * 100) +".jpeg";
         byte[] response = out.toByteArray();  
-        try (FileOutputStream fos = new FileOutputStream(caminho + File.separator + captchaFileName)) {  
+        FileOutputStream fos = null;
+        try {  
+        	fos = new FileOutputStream(caminho + File.separator + captchaFileName);
             fos.write(response);
-            fos.close();
-        }  
+        } finally{
+        	if(fos != null){
+        		fos.close();
+        	}
+        }
         
         // Separador  
 //        System.out.println();  

@@ -535,11 +535,16 @@ public class ConsultaCnpj {
         String caminho = ((ServletContext)(facesContext.getExternalContext().getContext())).getRealPath("resources"+ File.separator +"img");
         String captchaFileName = "captchaCnpj"+ (int)(Math.random() * 100) +".jpeg";
         String imagePath = caminho + File.separator + captchaFileName;
-        byte[] response = out.toByteArray();  
-        try (FileOutputStream fos = new FileOutputStream(imagePath)) {  
+        byte[] response = out.toByteArray();
+        FileOutputStream fos = null;
+        try{
+        	fos = new FileOutputStream(imagePath);
             fos.write(response);
-            fos.close();
-        }  
+        } finally{
+        	if(fos != null){
+        		fos.close();
+        	}
+        }
         
         // Separador  
 //        System.out.println();  
