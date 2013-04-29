@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="tituloPagina"> Cadastro de Empresa </ui:define>
+
+	<ui:define name="conteudo">
+		<p:panelGrid columns="1" id="panelExterno">
+			<f:facet name="header"><p:messages autoUpdate="true" /> </f:facet>
+			<p:panelGrid columns="6">
+				<f:facet name="header"> Cadastro de Empresa </f:facet>
+
+				<p:outputLabel for="cnpj" value="CNPJ: " />
+				<p:inputMask id="cnpj" mask="99.999.999/9999-99"
+					value="#{empresaMB.empresa.cnpj}" required="true" >
+					<f:converter converterId="cnpjConverter" />
+				</p:inputMask>
+
+				<p:outputLabel for="rs" value="Razão social: " />
+				<p:inputText id="rs" maxlength="100"
+					value="#{empresaMB.empresa.razaoSocial}" required="true" />
+
+				<p:outputLabel for="ie" value="Inscrição estadual: " />
+				<p:inputMask mask="99999999999999" id="ie" maxlength="14"
+					value="#{empresaMB.empresa.inscricaoEstadual}" />
+
+				<p:outputLabel for="qtSocio" value="Quantidade de sócios: " />
+				<p:spinner id="qtSocio" min="1" max="10" maxlength="2" required="true" 
+					value="#{empresaMB.empresa.quantidadeSocios}" />
+
+				<p:outputLabel for="tel" value="Telefone: " />
+				<p:inputMask id="tel" mask="(99)9999-9999"
+					value="#{empresaMB.empresa.telefone}" >
+					<f:converter converterId="telefoneConverter" />
+				</p:inputMask>
+
+				<p:outputLabel for="email" value="Email: " />
+				<p:inputText id="email" value="#{empresaMB.empresa.email}" />
+
+				<p:outputLabel for="cep" value="CEP: " />
+				<p:inputMask id="cep" mask="99.999-999" required="true" 
+					value="#{empresaMB.empresa.cep}" >
+					<f:converter converterId="cepConverter"/>
+				</p:inputMask>
+
+				<p:outputLabel for="endereco" value="Endereço: " />
+				<p:inputText id="endereco" value="#{empresaMB.empresa.endereco}" required="true" />
+
+				<p:outputLabel for="numero" value="Número: " />
+				<p:spinner id="numero" maxlength="6" min="0"
+					value="#{empresaMB.empresa.numero}" required="true" />
+
+				<p:outputLabel for="bairro" value="Bairro: " />
+				<p:inputText id="bairro" maxlength="30"
+					value="#{empresaMB.empresa.bairro}" required="true" />
+
+				<p:outputLabel for="estado" value="Estado: " />
+				<p:selectOneMenu id="estado" value="#{empresaMB.estado}"  required="true" >
+					<f:converter converterId="estadoConverter" />
+					<f:selectItems value="#{estadoMB.estados}" var="estado"
+						itemLabel="#{estado.nome}" itemValue="#{estado}" />
+					<p:ajax update="cidade" listener="#{empresaMB.handleEstadoChange}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="cidade" value="Cidade:"  />
+				<p:selectOneMenu id="cidade" value="#{empresaMB.empresa.cidade}" required="true" >
+					<f:converter converterId="cidadeConverter" />
+					<f:selectItems value="#{empresaMB.cidades}" var="cidade"
+						itemLabel="#{cidade.nome}" itemValue="#{cidade}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="cei" value="Cei: " />
+				<p:inputMask id="cei" mask="999999999999" value="#{empresaMB.empresa.cei}" />
+
+				<p:outputLabel for="categoria" value="Categoria da Empresa: " />
+				<p:selectOneMenu id="categoria" required="true" 
+					value="#{empresaMB.empresa.categoriaEmpresa}">
+					<f:converter converterId="categoriaEmpresaConverter" />
+					<f:selectItems value="#{categoriaEmpresaMB.categoriasEmpresa}"
+						var="categoria" itemLabel="#{categoria.descricao}"
+						itemValue="#{categoria}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="naturezaEmpresa" value="Natureza da Empresa: " />
+				<p:selectOneMenu id="naturezaEmpresa" required="true" 
+					value="#{empresaMB.empresa.naturezaEmpresa}">
+					<f:converter converterId="naturezaEmpresaConverter" />
+					<f:selectItems value="#{naturezaEmpresaMB.naturezasEmpresa}"
+						var="natureza" itemLabel="#{natureza.descricao}"
+						itemValue="#{natureza}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="cnae" value="C.N.A.E: " />
+				<p:inputMask id="cnae" mask="9999999999" required="true" 
+					value="#{empresaMB.empresa.cnae}" />
+
+				<p:outputLabel for="tipoFGTS" value="Tipo FGTS: " />
+				<p:selectOneMenu id="tipoFGTS" required="true" 
+					value="#{empresaMB.empresa.tipoFGTSEmpresa}">
+					<f:converter converterId="tipoFGTSEmpresaConverter" />
+					<f:selectItems value="#{tipoFGTSEmpresaMB.tiposFGTSEmpresa}"
+						var="tipoFGTS" itemLabel="#{tipoFGTS.descricao}"
+						itemValue="#{tipoFGTS}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="bancoFGTS" value="Banco para FGTS: " />
+				<p:selectOneMenu id="bancoFGTS" value="#{empresaMB.empresa.banco}" required="true" >
+					<f:converter converterId="bancoConverter" />
+					<f:selectItems value="#{bancoMB.bancos}" var="banco"
+						itemLabel="#{banco.nome}" itemValue="#{banco}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="agenciaFGTS" value="Agência para FGTS: " />
+				<p:spinner id="agenciaFGTS" maxlength="6" min="1" 
+					value="#{empresaMB.empresa.agenciaFGTS}" />
+
+				<p:outputLabel for="contaFGTS" value="Conta para FGTS: " />
+				<p:inputText id="contaFGTS" maxlength="15"
+					value="#{empresaMB.empresa.contaFGTS}" />
+
+				<p:outputLabel for="cpfResp" value="CPF: " />
+				<p:inputMask id="cpfResp" mask="999.999.999-99" required="true" 
+					value="#{empresaMB.empresa.cpfResponsavel}" >
+					<f:converter converterId="cpfConverter" />
+				</p:inputMask>
+
+				<p:outputLabel for="nomeResponsavel"
+					value="Nome completo responsável: " />
+				<p:inputText id="nomeResponsavel" maxlength="50" required="true" 
+					value="#{empresaMB.empresa.nomeResponsavel}" />
+
+				<p:outputLabel for="cepResp" value="CEP: " />
+				<p:inputMask id="cepResp" mask="99.999-999"
+					value="#{empresaMB.empresa.cepResponsavel}" >
+					<f:converter converterId="cepConverter"/>
+				</p:inputMask>
+
+				<p:outputLabel for="enderecoResp" value="Endereço: " />
+				<p:inputText id="enderecoResp"
+					value="#{empresaMB.empresa.enderecoResponsavel}" />
+
+				<p:outputLabel for="numeroResp" value="Número: " />
+				<p:spinner id="numeroResp" maxlength="6" min="0"
+					value="#{empresaMB.empresa.numeroResponsavel}" />
+
+				<p:outputLabel for="bairroResp" value="Bairro: " />
+				<p:inputText id="bairroResp" maxlength="30"
+					value="#{empresaMB.empresa.bairroResponsavel}" />
+
+				<p:outputLabel for="estadoResp" value="Estado: " />
+				<p:selectOneMenu id="estadoResp"
+					value="#{empresaMB.estadoResponsavel}">
+					<f:converter converterId="estadoConverter" />
+					<f:selectItems value="#{estadoMB.estados}" var="estado"
+						itemLabel="#{estado.nome}" itemValue="#{estado}" />
+					<p:ajax update="cidadeResp"
+						listener="#{empresaMB.handleEstadoResponsavelChange}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="cidadeResp" value="Cidade: " />
+				<p:selectOneMenu id="cidadeResp"
+					value="#{empresaMB.empresa.cidadeResponsavel}">
+					<f:selectItems value="#{empresaMB.cidadesResponsavel}" var="cidade"
+						itemLabel="#{cidade.nome}" itemValue="#{cidade}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="nomeResponsavelAssinatura" 
+					value="Nome completo responsável assinatura: " />
+				<p:inputText id="nomeResponsavelAssinatura" maxlength="50"
+					value="#{empresaMB.empresa.nomeResponsavelAssinatura}" required="true"  />
+
+				<p:outputLabel for="cpfRespAssinatura" 
+					value="CPF responsável assinatura: " />
+				<p:inputMask id="cpfRespAssinatura" mask="999.999.999-99"
+					value="#{empresaMB.empresa.cpfResponsavelAssinatura}" required="true"  >
+					<f:converter converterId="cpfConverter" />
+				</p:inputMask>
+
+			</p:panelGrid>
+			<p:panelGrid columns="4">
+				<f:facet name="header"> Dados para GPS</f:facet>
+
+				<p:outputLabel for="percFPAS" value="% de Fpas: " />
+				<p:panelGrid columns="1">
+					<h:panelGroup>
+						<h:outputText id="percFpasOut" />
+						<h:outputText value="%" />
+					</h:panelGroup>
+
+					<h:inputHidden id="percFPAS"
+						value="#{empresaMB.empresa.percentualFPAS}" />
+					<p:slider for="percFPAS" display="percFpasOut" style="width:200px" minValue="0" />
+				</p:panelGrid>
+
+				<p:outputLabel for="percTerceiros" value="% de terceiros: " />
+				<p:panelGrid columns="1" style="margin-bottom:10px;">
+					<h:panelGroup>
+						<h:outputText id="percTerceirosOut" />
+						<h:outputText value="%" />
+					</h:panelGroup>
+
+					<h:inputHidden id="percTerceiros"
+						value="#{empresaMB.empresa.percentualTerceiros}" />
+					<p:slider for="percTerceiros" display="percTerceirosOut" minValue="0"
+						style="width:200px" />
+				</p:panelGrid>
+
+				<p:outputLabel for="percRAT" value="% Acidente Trabalho(RAT): " />
+				<p:panelGrid columns="1" style="margin-bottom:10px;">
+					<h:panelGroup>
+						<h:outputText id="percRATOut" />
+						<h:outputText value="%" />
+					</h:panelGroup>
+
+					<h:inputHidden id="percRAT"
+						value="#{empresaMB.empresa.percentualAcidenteTrabalho}" />
+					<p:slider for="percRAT" display="percRATOut" style="width:200px" minValue="0" />
+				</p:panelGrid>
+
+				<p:outputLabel for="percFAP" value="% FAP: " />
+				<p:panelGrid columns="1" style="margin-bottom:10px;">
+					<h:panelGroup>
+						<h:outputText id="percFAPOut" />
+						<h:outputText value="%" />
+					</h:panelGroup>
+
+					<h:inputHidden id="percFAP"
+						value="#{empresaMB.empresa.percentualFAP}" />
+					<p:slider for="percFAP" display="percFAPOut" style="width:200px" minValue="0" />
+				</p:panelGrid>
+
+				<p:outputLabel for="percINSSEmpregador" value="% INSS empregador: " />
+				<p:panelGrid columns="1" style="margin-bottom:10px;">
+					<h:panelGroup>
+						<h:outputText id="percINSSEmpregadorOut" />
+						<h:outputText value="%" />
+					</h:panelGroup>
+
+					<h:inputHidden id="percINSSEmpregador"
+						value="#{empresaMB.empresa.percentualINSSEmpregador}" />
+					<p:slider for="percINSSEmpregador" display="percINSSEmpregadorOut" minValue="0"
+						style="width:200px" />
+				</p:panelGrid>
+
+				<p:outputLabel for="percIsencaoFilantropica"
+					value="% Isenção filantrópica: " />
+				<p:panelGrid columns="1" style="margin-bottom:10px;">
+					<h:panelGroup>
+						<h:outputText id="percIsencaoFilantropicaOut" />
+						<h:outputText value="%" />
+					</h:panelGroup>
+
+					<h:inputHidden id="percIsencaoFilantropica"
+						value="#{empresaMB.empresa.percentualIsencaoFilantropica}" />
+					<p:slider for="percIsencaoFilantropica"
+						display="percIsencaoFilantropicaOut" style="width:200px" minValue="0"  />
+				</p:panelGrid>
+
+				<p:outputLabel for="codTerceiros" value="Código terceiros: " />
+				<p:inputText id="codTerceiros" maxlength="10"
+					value="#{empresaMB.empresa.codigoTerceiros}" />
+
+				<p:outputLabel for="codGPS" value="Código da GPS: " />
+				<p:inputText id="codGPS" maxlength="10"
+					value="#{empresaMB.empresa.codigoGPS}" />
+
+				<p:outputLabel for="codFPAS" value="Código FPAS: " />
+				<p:inputText id="codFPAS" maxlength="10"
+					value="#{empresaMB.empresa.codigoFPAS}" />
+
+			</p:panelGrid>
+
+			<p:panelGrid columns="4">
+				<f:facet name="header"> Arredondamento</f:facet>
+
+				<p:outputLabel for="mensalistas" value="Mensalistas: " />
+				<p:inputMask mask="9.99" id="mensalistas" 
+					value="#{empresaMB.empresa.arredondamentoMensalista}" required="true" />
+				
+
+				<p:outputLabel for="horistas" value="Horistas: " />
+				<p:inputMask mask="9.99" id="horistas" 
+					value="#{empresaMB.empresa.arredondamentoHorista}" required="true" />
+
+				<p:outputLabel for="adiantamento" value="Optante adiantamento: " />
+				<p:selectOneRadio id="adiantamento"  value="#{empresaMB.empresa.optanteAdiantamento}" >
+					<f:selectItem itemLabel="Sim" itemValue="true"  />
+					<f:selectItem itemLabel="Não" itemValue="false" />
+				</p:selectOneRadio>
+
+				<p:outputLabel for="percAdiantamento"
+					value="% adiantamento quinzenal: " />
+				<p:inputText id="percAdiantamento" required="true"
+					value="#{empresaMB.empresa.percentualAdiantamento}" readonly="true"
+					size="2" />
+
+			</p:panelGrid>
+
+			<f:facet name="footer">
+				<p:commandButton value="Salvar" actionListener="#{empresaMB.inserir}" update="panelExterno"  />
+			</f:facet>	
+		</p:panelGrid>
+	</ui:define>
+</ui:composition>
+</html>

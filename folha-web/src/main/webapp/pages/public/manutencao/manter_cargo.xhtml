@@ -1,0 +1,98 @@
+<!DOCTYPE htm>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Manutenção de cargos </ui:define>
+		
+		<ui:define name="conteudo">
+			<p:dataTable editable="true" id="dataTable" value="#{cargoMB.cargos}" var="cargo" rowsPerPageTemplate="10,20"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+			paginator="true" rows="10" emptyMessage="Nenhum registro encontrado." paginatorAlwaysVisible="false" 
+			selectionMode="single" selection="#{cargoMB.cargo}" rowKey="#{cargo.id}" widgetVar="dataTable" >
+				<f:facet name="header"> 
+					<h:outputText value="Manutenção de cargos" />
+					<p:messages id="msg" autoUpdate="true" />				
+				</f:facet>
+
+				<p:ajax event="rowEdit" 		listener="#{cargoMB.onEdit}" 		update="msg dataTable" />  
+       			<p:ajax event="rowEditCancel" 	listener="#{cargoMB.onCancel}" 		update="msg dataTable" />  
+       			<p:ajax event="rowSelect" 		listener="#{cargoMB.atualizaCargo}"	update=":form:dialog" oncomplete="dialog.show();" />
+
+				<p:column headerText="Sindicato" >
+					<h:outputText value="#{cargo.departamento.sindicato.razaoSocial}" />
+				</p:column>
+				<p:column headerText="Departamento" >
+					<h:outputText value="#{cargo.departamento.nome}" />
+				</p:column>
+				<p:column headerText="Nome" >
+					<h:outputText value="#{cargo.nome}" />
+				</p:column>
+				<p:column headerText="Horas mensais" >
+					<h:outputText value="#{cargo.horasMensais}" >
+						<f:converter converterId="valorDecimalConverter" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Horas semanais" >
+					<h:outputText value="#{cargo.horasSemanais}" >
+						<f:converter converterId="valorDecimalConverter" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Adicional noturno" >
+					<h:outputText value="#{cargo.adicionalNoturno}" >
+						<f:converter converterId="simNaoConverter" />
+					</h:outputText>
+				</p:column>
+			</p:dataTable>
+			
+			<p:dialog id="dialog" widgetVar="dialog" header="Alterar dados do cargo #{cargoMB.cargo.nome}" >
+				<p:panelGrid columns="2" >
+					<f:facet name="header"><p:messages id="msgs" /></f:facet>
+				
+					<p:outputLabel for="sindicato"		value="Sindicato: " />				
+					<p:selectOneMenu id="sindicato" style="width:80%;"  value="#{cargoMB.sindicato}" required="true" > 
+						<f:converter converterId="sindicatoConverter" />
+						<f:selectItems value="#{cargoMB.sindicatos}"	var="sindicato2" 	itemValue="#{sindicato2}" 	itemLabel="#{sindicato2.razaoSocial}"	/>
+						<p:ajax update="departamento" listener="#{cargoMB.handleSindicatoChange}" />
+					</p:selectOneMenu>	
+
+					<p:outputLabel for="departamento"		value="Departamento: " />				
+					<p:selectOneMenu id="departamento"  	value="#{cargoMB.departamento}" required="true" style="width:80%;"  > 
+						<f:converter converterId="departamentoConverter" />
+						<f:selectItems value="#{cargoMB.departamentos}" var="departamento2"	itemLabel="#{departamento2.nome}" itemValue="#{departamento2}" />
+						<p:ajax update="nomeCargo" listener="#{cargoMB.handleDepartamentoChange}" />
+					</p:selectOneMenu>	
+
+					<p:outputLabel for="nomeCargo"		value="Cargo: " />				
+					<p:selectOneMenu id="nomeCargo" 	value="#{cargoMB.cargo.nome}" editable="true"  required="true" style="width:80%;"  > 
+						<f:selectItems value="#{cargoMB.cargos}"	var="cargo2"	itemLabel="#{cargo2.nome}" itemValue="#{cargo2.nome}" />
+					</p:selectOneMenu>	
+					
+					<p:outputLabel for="horasMensais"		value="Horas mensais: " />				
+					<p:inputMask  	id="horasMensais" 		mask="999"	value="#{cargoMB.cargo.horasMensais}" required="true" >
+						<f:converter converterId="numericMaskedConverter" />
+					</p:inputMask>
+								
+					<p:outputLabel for="horasSemanais"		value="Horas semanais: " />				
+					<p:inputMask  	id="horasSemanais" 		mask="99"	value="#{cargoMB.cargo.horasSemanais}" required="true" >
+						<f:converter converterId="numericMaskedConverter" />
+					</p:inputMask>
+								
+					<p:outputLabel for="adicionalNoturno"		value="Adicional noturno: " />				
+					<p:selectOneRadio id="adicionalNoturno"  	value="#{cargoMB.cargo.adicionalNoturno}" required="true" > 
+						<f:selectItem itemLabel="Sim" itemValue="true" />
+						<f:selectItem itemLabel="Não" itemValue="false" />
+					</p:selectOneRadio>
+	
+					<f:facet name="footer">
+						<p:commandButton value="Salvar" actionListener="#{cargoMB.alterar}"	update="msgs " oncomplete="dialog.hide();" />
+					</f:facet>
+				</p:panelGrid>				
+			</p:dialog>
+		</ui:define>
+	</ui:composition>
+</html>

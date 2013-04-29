@@ -1,0 +1,107 @@
+@CHARSET "ISO-8859-1";
+
+body, form{
+	margin:0;
+	padding:0;	
+}
+body{
+	margin-bottom:-1em;
+}
+html, body{
+	height: 100%;
+}
+
+#topo{ 
+	margin: 0 auto;
+	background-image: url(#{request.contextPath}/resources/img/bgdark.png);	
+	z-index: 20 !important;
+	overflow: visible !important;;
+	height: 60px !important;
+	padding-top: 5px;
+}
+#topo, #topo .ui-widget-content{
+	background-image: url(#{request.contextPath}/resources/img/bgdark.png);	
+}
+#topo img{
+	border: 0;
+	display:block;
+	margin: 0 auto;
+}
+.ui-tabmenu-nav .ui-tabmenuitem{
+	font-size: .8em;
+}
+
+.ui-galleria{
+	margin: 3em auto;
+}
+
+#rodape{
+	width:99.8%;
+	position: absolute;
+	text-align:center;
+	font-size: 1em;
+	height: 40px;
+	padding-top: 20px;
+	bottom: 0;
+	clear: both;
+}
+
+#topo, #rodape, #conteudo {
+	min-width: 1024px;
+}
+
+.ui-tabmenu-nav{
+	min-width: 900px;
+}
+
+#tudo{
+	min-height: 100%;
+	position: relative;
+	background-image: url(#{request.contextPath}/resources/img/bg.png);
+}
+
+#conteudo{
+	width: 100%;
+	padding-top:1em;
+	font-size: 90%;
+	padding-bottom: 100px;
+}
+
+.ui-widget-content{
+	vertical-align: top;
+}
+
+.ui-feed-link{
+	color: #2a2a33;
+	font-weight: bold;
+	font-size: .8em;
+}
+
+.ui-panel-contato .ui-panel-content{
+	font-size: .7em;
+}
+.ui-panel-contato{
+	min-width: 400px;
+	width:90%;
+}
+.ui-panel-noticia{
+	min-width:400px;
+	width:90%;
+}
+.ui-panel-fotos .ui-panel-content{
+	margin: .5em;
+	padding: .5em;
+	font-size: 90%;
+}
+.ui-feed-text{
+	font-size: .7em;
+}
+.ui-panelgrid{
+	margin: 0 auto;
+}
+.ui-widget{
+	font-size: 90%;
+}
+#formAdicional{
+	
+}

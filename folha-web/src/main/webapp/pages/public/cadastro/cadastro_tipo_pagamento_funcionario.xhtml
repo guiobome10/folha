@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Cadastro tipo pagamento funcionário </ui:define>
+		
+		<ui:define name="conteudo">
+			<p:panelGrid columns="2" >
+				<f:facet name="header"> 
+					<h:outputText value="Cadastro tipo pagamento funcionário " />
+					<p:messages id="msg" />
+				</f:facet>
+
+				<p:outputLabel for="descricao"		value="Descrição: " />				
+				<p:inputText 	id="descricao" 		value="#{tipoPagamentoFuncionarioMB.tipoPagamentoFuncionario.descricao}" />
+								
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" actionListener="#{tipoPagamentoFuncionarioMB.inserir}" update="msg" />
+				</f:facet>
+			</p:panelGrid>
+								
+		</ui:define>
+	</ui:composition>
+</html>

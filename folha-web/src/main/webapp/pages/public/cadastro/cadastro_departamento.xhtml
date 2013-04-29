@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Cadastro de Departamento </ui:define>
+		
+		<ui:define name="conteudo">
+			<p:messages id="msg" />
+			<p:panelGrid columns="4" >
+				<f:facet name="header"> Cadastro de Departamento</f:facet>
+
+				<p:outputLabel for="sindicato"	value="Sindicato: " />				
+				<p:selectOneMenu id="sindicato" value="#{departamentoMB.departamento.sindicato}" required="true" >
+					<f:converter converterId="sindicatoConverter" />
+					<f:selectItems value="#{sindicatoMB.sindicatos}"	var="sindicato"	itemLabel="#{sindicato.razaoSocial}" 	itemValue="#{sindicato}"/>
+				</p:selectOneMenu>	
+
+				<p:outputLabel for="nome"	value="Nome: "   />				
+				<p:inputText  	id="nome" maxlength="50" 	value="#{departamentoMB.departamento.nome}" required="true" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" 	actionListener="#{departamentoMB.inserir}" update="msg"	/>
+				</f:facet>
+			</p:panelGrid>								
+		</ui:define>
+	</ui:composition>
+</html>

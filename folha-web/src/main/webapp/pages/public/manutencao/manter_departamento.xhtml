@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Manutenção de Departamentos </ui:define>
+		
+		<ui:define name="conteudo">
+			<p:dataTable editable="true" id="dataTable" value="#{departamentoMB.departamentos}" var="departamento" rowsPerPageTemplate="10,20"
+			paginator="true" rows="10" emptyMessage="Nenhum registro encontrado." paginatorAlwaysVisible="false" 
+			widgetVar="dataTable" >
+				<f:facet name="header"> 
+					<h:outputText value="Manutenção de departamentos" />
+					<p:messages id="msg" autoUpdate="true" />				
+				</f:facet>
+
+				<p:ajax event="rowEdit" 		listener="#{departamentoMB.onEdit}" 			update="msg dataTable" />  
+       			<p:ajax event="rowEditCancel" 	listener="#{departamentoMB.onCancel}" 			update="msg dataTable" />  
+
+				<p:column headerText="Sindicato" >
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{departamento.sindicato.razaoSocial}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu value="#{departamento.sindicato}" required="true" >
+								<f:converter converterId="sindicatoConverter" /> 
+								<f:selectItems value="#{sindicatoMB.sindicatos}" var="sindicato" itemLabel="#{sindicato.razaoSocial}" itemValue="#{sindicato}" />
+							</p:selectOneMenu>	
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Nome" >
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{departamento.nome}" />
+						</f:facet>					
+						<f:facet name="input">
+							<p:inputText maxlength="50" value="#{departamento.nome}" required="true" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Alterar">
+					<p:rowEditor id="rowEditor" />
+				</p:column>			
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+</html>

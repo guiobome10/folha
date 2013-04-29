@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Cadastro de Provento </ui:define>
+		
+		<ui:define name="conteudo">
+			<p:messages id="msg" />
+			<p:panelGrid columns="2"	id="cadProvento" >
+				<f:facet name="header"> Cadastro de Provento</f:facet>
+			
+				<p:outputLabel for="descricao"		value="Descrição: " />				
+				<p:inputText  	id="descricao" 		value="#{proventoMB.provento.descricao}"	required="true" />
+							
+				<p:outputLabel for="percentual"		value="Percentual: " />				
+				<h:panelGrid columns="1" style="margin-bottom:10px;">  
+	        		<h:panelGroup>  
+	           			<h:outputText id="outputPercentual" />
+	           			<h:outputText value="%" />  
+	        		</h:panelGroup>   
+          
+	       			<h:inputHidden id="percentual"  value="#{proventoMB.provento.percentual}" 	required="true" />  
+	       			<p:slider for="percentual" display="outputPercentual" style="width:200px" widgetVar="percentual"
+	       			disabled="#{proventoMB.provento.valor!=null}" onSlideEnd="valor.update();" />  
+			    </h:panelGrid> 
+			    
+				<p:outputLabel for="valor"		value="Valor: " />
+				<p:inputMask 	id="valor"		mask="9.999,99" 
+						disabled="#{proventoMB.provento.percentual!=null}" widgetVar="valor"
+						value="#{proventoMB.provento.valor}" onblur="percentual.update();" 	required="true" />				
+
+				<p:outputLabel for="calcularMedias"		value="Calcular médias: " />				
+				<p:selectOneRadio id="calcularMedias" 	value="#{proventoMB.provento.indicativoCalculoMedia}" 	required="true" > 
+					<f:selectItem itemLabel="Sim" itemValue="true" />
+					<f:selectItem itemLabel="Não" itemValue="false" />
+				</p:selectOneRadio> 
+				
+				<p:outputLabel for="mesMedias"	value="Mês para médias: " />				
+				<p:spinner 		id="mesMedias" 	min="1" 	max="12"	maxlength="2" value="#{proventoMB.provento.mesMedia}" 	required="true" />
+			
+				<p:outputLabel for="para13Salario"		value="Para 13º salário: " />				
+				<p:selectOneRadio id="para13Salario" 	value="#{proventoMB.provento.indicativoDecimoTerceiro}" 	required="true" > 
+					<f:selectItem itemLabel="Sim" itemValue="true" />
+					<f:selectItem itemLabel="Não" itemValue="false" />
+				</p:selectOneRadio> 
+
+				<p:outputLabel for="paraFerias"			value="Para férias: " />				
+				<p:selectOneRadio id="paraFerias" 		value="#{proventoMB.provento.indicativoFerias}"	required="true" > 
+					<f:selectItem itemLabel="Sim" itemValue="true" />
+					<f:selectItem itemLabel="Não" itemValue="false" />
+				</p:selectOneRadio> 
+			    
+				<p:outputLabel for="informeRendimentos"		value="Informe de rendimentos: " />				
+				<p:selectOneMenu id="informeRendimentos" 	value="#{proventoMB.provento.informeRendimento}"	required="true" > 
+					<f:selectItems value="#{proventoMB.informesRendimento}" />
+				</p:selectOneMenu>	
+			    
+			    <f:facet name="footer">
+			    	<p:commandButton value="Salvar" actionListener="#{proventoMB.inserir}"	update="msg cadProvento" />
+			    </f:facet>
+			</p:panelGrid>							
+		</ui:define>
+	</ui:composition>
+</html>

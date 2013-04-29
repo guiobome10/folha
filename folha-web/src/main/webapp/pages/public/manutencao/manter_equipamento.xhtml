@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Manutenção de equipamentos </ui:define>
+		
+		<ui:define name="conteudo">
+			<p:dataTable editable="true" id="dataTable" value="#{equipamentoMB.equipamentos}" var="equipamento" rowsPerPageTemplate="10,20"
+						 paginator="true" rows="10" emptyMessage="Nenhum registro encontrado." paginatorAlwaysVisible="false" >
+				<f:facet name="header"> 
+					<h:outputText value="Manutenção de equipamentos" />
+					<p:messages id="msg" autoUpdate="true" />				
+				</f:facet>
+
+				<p:ajax event="rowEdit" 		listener="#{equipamentoMB.onEdit}"   update="msg" />  
+       			<p:ajax event="rowEditCancel" 	listener="#{equipamentoMB.onCancel}" update="msg" />  
+
+				<p:column headerText="Empresa" >
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{equipamento.empresa.razaoSocial}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu value="#{equipamento.empresa}" required="true">
+								<f:converter converterId="empresaConverter" />
+								<f:selectItems value="#{empresaMB.empresas}" var="empresa"
+									itemLabel="#{empresa.razaoSocial}" itemValue="#{empresa}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Tipo de equipamento" >
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{equipamento.tipoEquipamento.descricao}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu value="#{equipamento.tipoEquipamento}" required="true">
+								<f:converter converterId="tipoEquipamentoConverter" />
+								<f:selectItems value="#{tipoEquipamentoMB.tipoEquipamentos}" var="tipoEquipamento"
+									itemLabel="#{tipoEquipamento.descricao}" itemValue="#{tipoEquipamento}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Descrição" >
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{equipamento.descricao}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{equipamento.descricao}" maxlength="40" required="true" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Quantidade" >
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{equipamento.quantidade}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:spinner value="#{equipamento.quantidade}" maxlength="3" min="0" required="true"   />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Alterar" style="width:40px">
+					<p:rowEditor id="rowEditor" />
+				</p:column>			
+			</p:dataTable>											
+		</ui:define>
+	</ui:composition>
+</html>

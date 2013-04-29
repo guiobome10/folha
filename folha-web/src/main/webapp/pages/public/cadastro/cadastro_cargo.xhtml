@@ -1,0 +1,54 @@
+<!DOCTYPE htm>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Cadastro de Cargo </ui:define>
+		
+		<ui:define name="conteudo">
+			<p:messages id="msg" />			
+			<p:panelGrid columns="2" >
+				<f:facet name="header"> Cadastro de Cargo</f:facet>
+			
+				<p:outputLabel for="sindicato"		value="Sindicato: " />				
+				<p:selectOneMenu id="sindicato" style="width:80%;"  value="#{cargoMB.sindicato}" required="true" > 
+					<f:converter converterId="sindicatoConverter" />
+					<f:selectItems value="#{cargoMB.sindicatos}"	var="sindicato" 	itemValue="#{sindicato}" 	itemLabel="#{sindicato.razaoSocial}"	/>
+					<p:ajax update="departamento" listener="#{cargoMB.handleSindicatoChange}" />
+				</p:selectOneMenu>	
+
+				<p:outputLabel for="departamento"		value="Departamento: " />				
+				<p:selectOneMenu id="departamento"  	value="#{cargoMB.departamento}" required="true" style="width:80%;"  > 
+					<f:converter converterId="departamentoConverter" />
+					<f:selectItems value="#{cargoMB.departamentos}" var="departamento"	itemLabel="#{departamento.nome}" itemValue="#{departamento}" />
+					<p:ajax update="nomeCargo" listener="#{cargoMB.handleDepartamentoChange}" />
+				</p:selectOneMenu>	
+
+				<p:outputLabel for="nomeCargo"		value="Cargo: " />				
+				<p:selectOneMenu id="nomeCargo" 	value="#{cargoMB.cargo.nome}" editable="true"  required="true" style="width:80%;"  > 
+					<f:selectItems value="#{cargoMB.cargos}"	var="cargo"	itemLabel="#{cargo.nome}" itemValue="#{cargo.nome}" />
+				</p:selectOneMenu>	
+				
+				<p:outputLabel for="horasMensais"		value="Horas mensais: " />				
+				<p:inputMask  	id="horasMensais" 		mask="999"	value="#{cargoMB.cargo.horasMensais}" required="true"	/>
+							
+				<p:outputLabel for="horasSemanais"		value="Horas semanais: " />				
+				<p:inputMask  	id="horasSemanais" 		mask="99"	value="#{cargoMB.cargo.horasSemanais}" required="true"	/>
+							
+				<p:outputLabel for="adicionalNoturno"		value="Adicional noturno: " />				
+				<p:selectOneRadio id="adicionalNoturno"  	value="#{cargoMB.cargo.adicionalNoturno}" required="true" > 
+					<f:selectItem itemLabel="Sim" itemValue="true" />
+					<f:selectItem itemLabel="Não" itemValue="false" />
+				</p:selectOneRadio>
+
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" actionListener="#{cargoMB.inserir}"	update="msg" />
+				</f:facet>
+			</p:panelGrid>							
+		</ui:define>
+	</ui:composition>
+</html>

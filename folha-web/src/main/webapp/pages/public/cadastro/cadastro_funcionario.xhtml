@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="tituloPagina"> Cadastro de Funcionário </ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="cadastroFuncionario" enctype="multipart/form-data">
+			<p:messages id="msg" />
+			<p:panelGrid columns="1">
+				<f:facet name="header"> 
+					<h:outputText value="Cadastro de funcionário" rendered="#{funcionarioMB.funcionario.id == null}" />	
+					<h:outputText value="Alteração de funcionário" rendered="#{funcionarioMB.funcionario.id != null}" />	
+				</f:facet>
+				<p:panelGrid columns="4">
+					<f:facet name="header"> Informações pessoais</f:facet>
+
+					<p:outputLabel for="foto" value="Foto: " />
+					<p:fileUpload id="foto" value="#{funcionarioMB.funcionario.foto}"
+						update="msg" 
+						fileUploadListener="#{funcionarioMB.handleFileUpload}" auto="true"
+						mode="advanced" sizeLimit="100000"
+						allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+					<p:outputLabel for="empresa" value="Empresa: " />
+					<p:selectOneMenu id="empresa"
+						value="#{funcionarioMB.funcionario.empresa}" required="true">
+						<f:converter converterId="empresaConverter" />
+						<f:selectItems value="#{empresaMB.empresas}" var="empresa"
+							itemLabel="#{empresa.razaoSocial}" itemValue="#{empresa}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="cpf" value="CPF: " />
+					<p:inputMask id="cpf" mask="999.999.999-99"
+						value="#{funcionarioMB.funcionario.cpf}" required="true">
+						<f:converter converterId="cpfConverter" />
+					</p:inputMask>
+
+					<p:outputLabel for="nome" value="Nome: " />
+					<p:inputText id="nome" maxlength="50"
+						value="#{funcionarioMB.funcionario.nome}" required="true" />
+
+					<p:outputLabel for="categoria" value="Categoria: " />
+					<p:selectOneMenu id="categoria"
+						value="#{funcionarioMB.funcionario.categoriaFuncionario}"
+						required="true">
+						<f:converter converterId="categoriaFuncionarioConverter" />
+						<f:selectItems
+							value="#{categoriaFuncionarioMB.categoriasFuncionario}"
+							var="categoriaFuncionario"
+							itemLabel="#{categoriaFuncionario.descricao}"
+							itemValue="#{categoriaFuncionario}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="pagamento" value="Tipo Pagamento: " />
+					<p:selectOneMenu id="pagamento"
+						value="#{funcionarioMB.funcionario.tipoPagamentoFuncionario}"
+						required="true">
+						<f:converter converterId="tipoPagamentoFuncionarioConverter" />
+						<f:selectItems
+							value="#{tipoPagamentoFuncionarioMB.tiposPagamentoFuncionario}"
+							var="tipoPagamentoFuncionario"
+							itemLabel="#{tipoPagamentoFuncionario.descricao}"
+							itemValue="#{tipoPagamentoFuncionario}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="tel" value="Telefone: " />
+					<p:inputMask id="tel" mask="(99)9999-9999"
+						value="#{funcionarioMB.funcionario.telefone}" required="true">
+						<f:converter converterId="telefoneConverter" />
+					</p:inputMask>
+
+					<p:outputLabel for="email" value="Email: " />
+					<p:inputText id="email" value="#{funcionarioMB.funcionario.email}"
+						required="true" />
+
+					<p:outputLabel for="cep" value="CEP: " />
+					<p:inputMask id="cep" mask="99.999-999"
+						value="#{funcionarioMB.funcionario.cep}" required="true">
+						<f:converter converterId="cepConverter" />
+					</p:inputMask>
+
+					<p:outputLabel for="endereco" value="Endereço: " />
+					<p:inputText id="endereco" maxlength="40"
+						value="#{funcionarioMB.funcionario.endereco}" required="true" />
+
+					<p:outputLabel for="numero" value="Número: " />
+					<p:spinner id="numero" maxlength="6"
+						value="#{funcionarioMB.funcionario.numero}" required="true" />
+
+					<p:outputLabel for="complemento" value="Complemento: " />
+					<p:inputText id="complemento" maxlength="30"
+						value="#{funcionarioMB.funcionario.complemento}" required="true" />
+
+					<p:outputLabel for="bairro" value="Bairro: " />
+					<p:inputText id="bairro" maxlength="30"
+						value="#{funcionarioMB.funcionario.bairro}" required="true" />
+
+					<p:outputLabel for="estado" value="Estado: " />
+					<p:selectOneMenu id="estado" value="#{funcionarioMB.estado}"
+						required="true">
+						<f:converter converterId="estadoConverter" />
+						<f:selectItems value="#{estadoMB.estados}" var="estado"
+							itemLabel="#{estado.nome}" itemValue="#{estado}" />
+						<p:ajax update="cidade"
+							listener="#{funcionarioMB.handleEstadoChange}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="cidade" value="Cidade: " />
+					<p:selectOneMenu id="cidade"
+						value="#{funcionarioMB.funcionario.cidade}" required="true">
+						<f:converter converterId="cidadeConverter" />
+						<f:selectItems value="#{funcionarioMB.cidades}" var="cidade"
+							itemLabel="#{cidade.nome}" itemValue="#{cidade}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="dataNascimento" value="Data de Nascimento: " />
+					<p:calendar id="dataNascimento" navigator="true"
+						value="#{funcionarioMB.funcionario.dataNascimento}"
+						pattern="dd/MM/yyyy" required="true" />
+
+					<p:outputLabel for="ufNascimento" value="UF nascimento: " />
+					<p:selectOneMenu id="ufNascimento"
+						value="#{funcionarioMB.estadoNascimento}" required="true">
+						<f:converter converterId="estadoConverter" />
+						<f:selectItems value="#{estadoMB.estados}" var="estado"
+							itemLabel="#{estado.nome}" itemValue="#{estado}" />
+						<p:ajax update="cidadeNascimento"
+							listener="#{funcionarioMB.handleEstadoNascimentoChange}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="cidadeNascimento" value="Cidade Nascimento: " />
+					<p:selectOneMenu id="cidadeNascimento"
+						value="#{funcionarioMB.funcionario.cidadeNascimento}"
+						required="true">
+						<f:converter converterId="cidadeConverter" />
+						<f:selectItems value="#{funcionarioMB.cidadesNascimento}"
+							var="cidade" itemLabel="#{cidade.nome}" itemValue="#{cidade}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="nomeMae" value="Nome da mãe: " />
+					<p:inputText id="nomeMae"
+						value="#{funcionarioMB.funcionario.nomeMae}" required="true" />
+
+					<p:outputLabel for="nomePai" value="Nome do pai: " />
+					<p:inputText id="nomePai"
+						value="#{funcionarioMB.funcionario.nomePai}" required="true" />
+
+				</p:panelGrid>
+
+				<p:panelGrid columns="4">
+					<f:facet name="header"> Documentos</f:facet>
+
+					<p:outputLabel for="pis" value="Número PIS: " />
+					<p:inputMask id="pis" mask="9999999999-9"
+						value="#{funcionarioMB.funcionario.numeroPIS}" required="true" >
+						<f:converter converterId="pisConverter" />
+					</p:inputMask>
+
+					<p:outputLabel for="ctps" value="Número CTPS: " />
+					<p:inputMask id="ctps" mask="99999999"
+						value="#{funcionarioMB.funcionario.numeroCTPS}" required="true" />
+
+					<p:outputLabel for="serie" value="Série: " />
+					<p:inputMask id="serie" mask="99999"
+						value="#{funcionarioMB.funcionario.serie}" required="true" />
+
+					<p:outputLabel for="ufCtps" value="UF CTPS: " />
+					<p:selectOneMenu id="ufCtps"
+						value="#{funcionarioMB.funcionario.estadoCTPS}" required="true">
+						<f:converter converterId="estadoConverter" />
+						<f:selectItems value="#{estadoMB.estados}" var="estado"
+							itemLabel="#{estado.nome}" itemValue="#{estado}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="rg" value="Número RG: " />
+					<p:inputMask id="rg" mask="99.999.999-9"
+						value="#{funcionarioMB.funcionario.rg}" required="true">
+						<f:converter converterId="rgConverter" />
+					</p:inputMask>
+
+					<p:outputLabel for="dtEmissaoRg" value="Data de expedição: " />
+					<p:calendar id="dtEmissaoRg" navigator="true"
+						value="#{funcionarioMB.funcionario.dataEmissao}"
+						pattern="dd/MM/yyyy" required="true" />
+
+					<p:outputLabel for="orgaoEmissorRg" value="Orgão emissor: " />
+					<p:inputMask id="orgaoEmissorRg" mask="aaa/aa"
+						value="#{funcionarioMB.funcionario.orgaoEmissor}" required="true" />
+
+					<p:outputLabel for="ufRg" value="UF RG: " />
+					<p:selectOneMenu id="ufRg"
+						value="#{funcionarioMB.funcionario.estadoRG}" required="true">
+						<f:converter converterId="estadoConverter" />
+						<f:selectItems value="#{estadoMB.estados}" var="estado"
+							itemLabel="#{estado.nome}" itemValue="#{estado}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="nrTituloEleitor"
+						value="Número título de eleitor: " />
+					<p:inputMask id="nrTituloEleitor" mask="9999 9999 9999"
+						value="#{funcionarioMB.funcionario.numeroTitulo}" >
+						<f:converter converterId="tituloConverter" />
+					</p:inputMask>
+
+					<p:outputLabel for="nrZonaEleitoral" value="Zona: " />
+					<p:inputMask id="nrZonaEleitoral" mask="999"
+						value="#{funcionarioMB.funcionario.numeroZonaEleitoral}" />
+
+					<p:outputLabel for="nrSecaoEleitoral" value="Seção: " />
+					<p:inputMask id="nrSecaoEleitoral" mask="9999"
+						value="#{funcionarioMB.funcionario.secaoZonaEleitoral}" />
+
+					<p:outputLabel for="nrCarteiraHabilitacao"
+						value="Número carteira de habilitação: " />
+					<p:inputMask id="nrCarteiraHabilitacao" mask="99999999999"
+						value="#{funcionarioMB.funcionario.numeroCNH}" />
+
+					<p:outputLabel for="categoriaCNH" value="Categoria Habilitação: " />
+					<p:selectOneMenu id="categoriaCNH"
+						value="#{funcionarioMB.funcionario.categoriaCNH}">
+						<f:converter converterId="categoriaCNHConverter" />
+						<f:selectItems value="#{categoriaCNHMB.categoriasCNH}"
+							var="categoriaCNH" itemLabel="#{categoriaCNH.descricaoConcatenada}"
+							itemValue="#{categoriaCNH}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="dtVencimento" value="Vencimento: " />
+					<p:calendar id="dtVencimento" navigator="true"
+						value="#{funcionarioMB.funcionario.dataVencimentoCNH}"
+						pattern="dd/MM/yyyy" />
+
+					<p:outputLabel for="exposicaoAgenteNocivo"
+						value="Exposição agentes nocivos: " />
+					<p:selectOneMenu id="exposicaoAgenteNocivo" style="width:80%;"
+						value="#{funcionarioMB.funcionario.tipoExposicaoFuncionario}"
+						required="true">
+						<f:converter converterId="tipoExposicaoFuncionarioConverter" />
+						<f:selectItems
+							value="#{tipoExposicaoFuncionarioMB.tiposExposicaoFuncionario}"
+							var="tipoExposicao" itemLabel="#{tipoExposicao.descricao}"
+							itemValue="#{tipoExposicao}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="rais" value="Rais: " />
+					<p:selectOneMenu id="rais" style="width:80%;"
+						value="#{funcionarioMB.funcionario.tipoRaisFuncionario}"
+						required="true">
+						<f:converter converterId="tipoRaisFuncionarioConverter" />
+						<f:selectItems
+							value="#{tipoRaisFuncionarioMB.tiposRaisFuncionario}"
+							var="tipoRaisFuncionario"
+							itemLabel="#{tipoRaisFuncionario.descricao}"
+							itemValue="#{tipoRaisFuncionario}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="departamento" value="Departamento: " />
+					<p:selectOneMenu id="departamento"
+						value="#{funcionarioMB.departamento}" required="true">
+						<f:converter converterId="departamentoConverter" />
+						<f:selectItems value="#{funcionarioMB.departamentos}"
+							var="departamento" itemLabel="#{departamento.nome}"
+							itemValue="#{departamento}" />
+						<p:ajax update="cargo"
+							listener="#{funcionarioMB.handleDepartamentoChange}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="cargo" value="Cargo: " />
+					<p:selectOneMenu id="cargo"
+						value="#{funcionarioMB.funcionario.cargo}" required="true">
+						<f:converter converterId="cargoConverter" />
+						<f:selectItems value="#{funcionarioMB.cargos}" var="cargo"
+							itemLabel="#{cargo.nome}" itemValue="#{cargo}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="turnoTrabalho" value="Turno de Trabalho	: " />
+					<p:selectOneMenu id="turnoTrabalho"
+						value="#{funcionarioMB.funcionario.turno}" required="true">
+						<f:converter converterId="turnoConverter" />
+						<f:selectItems value="#{turnoMB.turnos}" var="turno"
+							itemLabel="#{turno.asString}" itemValue="#{turno}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="valorSalario" value="Valor salário: " />
+					<p:inputMask id="valorSalario" mask="99.999.999,99"
+						value="#{funcionarioMB.funcionario.valorSalario}" required="true" >
+						<f:converter converterId="salarioConverter" />
+					</p:inputMask>
+
+					<p:outputLabel for="percentualPensao" value="Percentual pensão: " />
+					<h:panelGrid columns="1" style="margin-bottom:10px;">
+						<h:panelGroup>
+							<h:outputText id="output" />
+							<h:outputText value="%" />
+						</h:panelGroup>
+
+						<h:inputHidden id="percentualPensao"
+							value="#{funcionarioMB.funcionario.percentualPensao}"
+							required="true" />
+						<p:slider for="percentualPensao" display="output"
+							style="width:200px" />
+					</h:panelGrid>
+
+					<p:outputLabel for="percentualPericulosidade"
+						value="Percentual periculosidade: " />
+					<h:panelGrid columns="1" style="margin-bottom:10px;">
+						<h:panelGroup>
+							<h:outputText id="outputPericulosidade" />
+							<h:outputText value="%" />
+						</h:panelGroup>
+
+						<h:inputHidden id="percentualPericulosidade"
+							value="#{funcionarioMB.funcionario.percentualPericulosidade}"
+							required="true" />
+						<p:slider for="percentualPericulosidade"
+							display="outputPericulosidade" style="width:200px" />
+					</h:panelGrid>
+
+					<p:outputLabel for="percentualInsalubridade"
+						value="Percentual insalubridade: " />
+					<h:panelGrid columns="1" style="margin-bottom:10px;">
+						<h:panelGroup>
+							<h:outputText id="outputInsalubridade" />
+							<h:outputText value="%" />
+						</h:panelGroup>
+
+						<h:inputHidden id="percentualInsalubridade"
+							value="#{funcionarioMB.funcionario.percentualInsalubridade}"
+							required="true" />
+						<p:slider for="percentualInsalubridade"
+							display="outputInsalubridade" style="width:200px" />
+					</h:panelGrid>
+
+					<p:outputLabel for="base" value="Base: " />
+					<p:selectOneMenu id="base"
+						value="#{funcionarioMB.funcionario.baseInsalubridadeFuncionario}"
+						required="true">
+						<f:converter converterId="baseInsalubridadeFuncionarioConverter" />
+						<f:selectItems
+							value="#{baseInsalubridadeFuncionarioMB.baseInsalubridadeFuncionarios}"
+							var="baseInsalubridade"
+							itemLabel="#{baseInsalubridade.descricao}"
+							itemValue="#{baseInsalubridade}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="valeTransporte" value="Vale transporte: " />
+					<p:selectOneRadio id="valeTransporte"
+						value="#{funcionarioMB.funcionario.valeTransporte}"
+						required="true">
+						<f:selectItem itemLabel="Sim" itemValue="true" />
+						<f:selectItem itemLabel="Não" itemValue="false" />
+					</p:selectOneRadio>
+				</p:panelGrid>
+
+				<p:panelGrid columns="4">
+					<f:facet name="header">Outros dados</f:facet>
+					<p:outputLabel for="estadoCivil" value="Estado civil: " />
+					<p:selectOneMenu id="estadoCivil"
+						value="#{funcionarioMB.funcionario.estadoCivil}">
+						<f:converter converterId="estadoCivilConverter" />
+						<f:selectItems value="#{estadoCivilMB.estadosCivil}"
+							var="estadoCivil" itemLabel="#{estadoCivil.descricao}"
+							itemValue="#{estadoCivil}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="escolaridade" value="Escolaridade: " />
+					<p:selectOneMenu id="escolaridade"
+						value="#{funcionarioMB.funcionario.escolaridade}">
+						<f:converter converterId="escolaridadeConverter" />
+						<f:selectItems value="#{escolaridadeMB.escolaridades}"
+							var="escolaridade" itemLabel="#{escolaridade.descricao}"
+							itemValue="#{escolaridade}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="cor" value="Cor: " />
+					<p:selectOneMenu id="cor"
+						value="#{funcionarioMB.funcionario.cor}">
+						<f:converter converterId="corConverter" />
+						<f:selectItems value="#{corMB.cores}" var="cor"
+							itemLabel="#{cor.descricao}" itemValue="#{cor}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="portadorDeficiencia"
+						value="Portador de deficiência: " />
+					<p:selectOneMenu id="portadorDeficiencia"
+						value="#{funcionarioMB.funcionario.deficiencia}">
+						<f:converter converterId="deficienciaConverter" />
+						<f:selectItems value="#{deficienciaMB.deficiencias}"
+							var="deficiencia" itemLabel="#{deficiencia.descricao}"
+							itemValue="#{deficiencia}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="nacionalidade" value="Nacionalidade: " />
+					<p:selectOneMenu id="nacionalidade"
+						value="#{funcionarioMB.funcionario.nacionalidade}">
+						<f:converter converterId="nacionalidadeConverter" />
+						<f:selectItems value="#{nacionalidadeMB.nacionalidades}"
+							var="nacionalidade" itemLabel="#{nacionalidade.descricao}"
+							itemValue="#{nacionalidade}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="coren" value="COREN: " />
+					<p:inputMask id="coren" mask="	9999999999"
+						value="#{funcionarioMB.funcionario.COREN}" />
+
+				</p:panelGrid>
+
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" actionListener="#{funcionarioMB.salvar}" update="msg" />
+					<p:commandButton value="Cancelar" action="manter_funcionario" immediate="true" rendered="#{funcionarioMB.funcionario.id != null}" />
+				</f:facet>
+			</p:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

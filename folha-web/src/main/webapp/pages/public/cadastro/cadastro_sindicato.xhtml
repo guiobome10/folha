@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Cadastro de Sindicato </ui:define>
+
+	<ui:define name="conteudo">
+		<p:panelGrid columns="1" id="panelExterno">
+			<f:facet name="header"><p:messages autoUpdate="true" /> </f:facet>
+			<p:growl id="msg" />
+			
+			<p:panelGrid columns="4" >
+				<f:facet name="header"> Cadastro de Sindicato</f:facet>
+			
+				<p:outputLabel for="captcha"	value="Digite os caracteres que aparecem na imagem:" />				
+				<p:inputMask  	id="captcha" 	mask="******"	value="#{sindicatoMB.captcha}"	required="true"   />
+			
+				<h:outputLabel  value="Imagem:" />	
+				<p:graphicImage id="img" library="img" name="#{sindicatoMB.imagePath}" />
+			
+				<p:outputLabel for="cnpj"	value="CNPJ: " />				
+				<p:inputMask  	id="cnpj" 	mask="99.999.999/9999-99"	value="#{sindicatoMB.sindicato.cnpj}"	required="true" >
+					<f:converter converterId="cnpjConverter" />
+					<p:ajax event="blur" listener="#{sindicatoMB.consultaCNPJ}" process="captcha cnpj" update="captcha, img, razaoSocial, cep, endereco, complemento, numero, bairro, estado, cidade" />
+				</p:inputMask>
+			
+				<p:outputLabel for="razaoSocial"		value="Razão social: " />				
+				<p:inputText 	id="razaoSocial" 		maxlength="100" 			value="#{sindicatoMB.sindicato.razaoSocial}" required="true" /> 
+
+				<p:outputLabel for="codigoSindical"	value="Código sindical: " />				
+				<p:inputMask  	id="codigoSindical" 	mask="999999999999"	value="#{sindicatoMB.sindicato.codigoSindical}"	required="true" />
+				
+				<p:outputLabel for="telefone"	value="Telefone: " />				
+				<p:inputMask  	id="telefone" 	mask="(99)9999-9999"	value="#{sindicatoMB.sindicato.telefone}"	>
+					<f:converter converterId="telefoneConverter" />
+				</p:inputMask>
+				
+				<p:outputLabel for="cep"	value="CEP: " />				
+				<p:inputMask  	id="cep" 	mask="99.999-999"	value="#{sindicatoMB.sindicato.cep}" required="true" >
+					<f:converter converterId="cepConverter" />
+					<p:ajax  event="blur" update="endereco, bairro, estado, cidade" listener="#{sindicatoMB.trataCep}" />
+				</p:inputMask>
+				
+				<p:outputLabel for="endereco"	value="Endereço: " />				
+				<p:inputText  	id="endereco" 	value="#{sindicatoMB.sindicato.endereco}"	required="true"  />
+
+				<p:outputLabel for="complemento"	value="Complemento: " />				
+				<p:inputText  	id="complemento" 	value="#{sindicatoMB.sindicato.complemento}" />
+
+				<p:outputLabel for="numero"	value="Número: " />				
+				<p:spinner 		id="numero" maxlength="6"  min="0"	value="#{sindicatoMB.sindicato.numero}"	required="true" />
+
+				<p:outputLabel for="bairro"	value="Bairro: " />				
+				<p:inputText	id="bairro" maxlength="30" 	value="#{sindicatoMB.sindicato.bairro}"	required="true" />
+
+				<p:outputLabel for="estado" value="Estado: " />
+				<p:selectOneMenu id="estado" value="#{sindicatoMB.estado}"  required="true" >
+					<f:converter converterId="estadoConverter" />
+					<f:selectItems value="#{estadoMB.estados}" var="estado"
+						itemLabel="#{estado.nome}" itemValue="#{estado}" />
+					<p:ajax update="cidade" listener="#{sindicatoMB.handleEstadoChange}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="cidade" value="Cidade:"  />
+				<p:selectOneMenu id="cidade" value="#{sindicatoMB.sindicato.cidade}" required="true" >
+					<f:converter converterId="cidadeConverter" />
+					<f:selectItems value="#{sindicatoMB.cidades}" var="cidade"
+						itemLabel="#{cidade.nome}" itemValue="#{cidade}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="mesDissidio"	value="Mês de dissidio: " />				
+				<p:spinner 		id="mesDissidio" 	min="1" 	max="12"	maxlength="2" value="#{sindicatoMB.sindicato.mesDissidio}" />
+			
+				<p:outputLabel for="minimoCategoria"		value="Mínimo da categoria: " />				
+				<p:inputMask	id="minimoCategoria" 		mask="999.999,99"	value="#{sindicatoMB.sindicato.minimoCategoria}"	>
+					<f:converter converterId="valorDecimalConverter" />
+				</p:inputMask>
+
+				<p:outputLabel for="percReversao"	value="% Reversão: " />				
+				<h:panelGrid columns="1" style="margin-bottom:10px;">  
+        			<h:panelGroup>  
+            			<h:outputText id="outputPercReversao" />
+            			<h:outputText value="%" />  
+        			</h:panelGroup>   
+          
+        			<h:inputHidden id="percReversao" 	value="#{sindicatoMB.sindicato.percentualReversao}" />  
+        			<p:slider for="percReversao" display="outputPercReversao" style="width:200px" />  
+			    </h:panelGrid> 
+
+				<p:outputLabel for="descontoMinimo"		value="Desconto mínimo: " />				
+				<p:inputMask	id="descontoMinimo" 		mask="999.999,99"	value="#{sindicatoMB.sindicato.descontoMinimo}"	>
+					<f:converter converterId="valorDecimalConverter" />
+				</p:inputMask>
+				
+				<p:outputLabel for="descontoMaximo"		value="Desconto máximo: " />				
+				<p:inputMask	id="descontoMaximo" 		mask="999.999,99"	value="#{sindicatoMB.sindicato.descontoMaximo}"	>
+					<f:converter converterId="valorDecimalConverter" />
+				</p:inputMask>
+				
+				<p:outputLabel for="valorContribuicao"		value="Valor contribuição: " />				
+				<p:inputMask	id="valorContribuicao" 		mask="999.999,99"	value="#{sindicatoMB.sindicato.valorContribuicao}"	>				
+					<f:converter converterId="valorDecimalConverter" />
+				</p:inputMask>
+
+			</p:panelGrid>							
+				<f:facet name="footer">
+					<p:commandButton	actionListener="#{sindicatoMB.inserir}" value="Salvar" update="msg panelExterno" />
+				</f:facet>
+		</p:panelGrid>
+	</ui:define>
+</ui:composition>
+</html>

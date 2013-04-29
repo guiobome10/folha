@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Cadastro de Afastamento </ui:define>
+		
+		<ui:define name="conteudo">
+			<p:focus for="funcionario" />
+			<p:panelGrid columns="2" >
+				<f:facet name="header"> Cadastro de Afastamento</f:facet>
+
+				<p:outputLabel for="funcionario"	value="Funcionário: " />				
+				<p:selectOneMenu id="funcionario" >
+					<f:selectItem itemLabel="Ze mane" 	itemValue="1"/>
+					<f:selectItem itemLabel="Joao marcos" 		itemValue="2"/>
+				</p:selectOneMenu>	
+				
+				<p:outputLabel for="condicaoFuncionario"	value="Condição do funcionário: " />				
+				<p:selectOneMenu id="condicaoFuncionario" >
+					<f:selectItem itemLabel="Afastado com direitos integrais" 			itemValue="1"/>
+					<f:selectItem itemLabel="Afastado por acidente de trabalho" 		itemValue="2"/>
+					<f:selectItem itemLabel="Afastado por serviço militar"		 		itemValue="3"/>
+					<f:selectItem itemLabel="Afastado por auxilio maternidade" 			itemValue="4"/>
+					<f:selectItem itemLabel="Afastado por auxilio doença" 				itemValue="5"/>
+					<f:selectItem itemLabel="Afastado sem direitos" 					itemValue="6"/>
+					<f:selectItem itemLabel="Em desligamento(Rescisão)" 				itemValue="7"/>
+					<f:selectItem itemLabel="Funcionario desligado" 					itemValue="8"/>
+					<f:selectItem itemLabel="Funcionario transferido" 					itemValue="9"/>
+					<f:selectItem itemLabel="Funcionario em férias" 					itemValue="10"/>
+				</p:selectOneMenu>	
+
+				<p:outputLabel for="causa"	value="Causa: " />				
+				<p:selectOneMenu id="causa" >
+					<f:selectItem itemLabel="Dispensado por justa causa" 			itemValue="1"/>
+					<f:selectItem itemLabel="Dispensado sem justa causa"	 		itemValue="2"/>
+					<f:selectItem itemLabel="Período de dispensa por justa causa"	itemValue="3"/>
+					<f:selectItem itemLabel="Período de dispensa sem justa causa"	itemValue="4"/>
+					<f:selectItem itemLabel="Cessão para outra entidade"			itemValue="5"/>
+					<f:selectItem itemLabel="Transferência mesmo grupo"				itemValue="6"/>
+					<f:selectItem itemLabel="Aposentadoria / Reforma" 				itemValue="7"/>
+					<f:selectItem itemLabel="Falecimento"			 				itemValue="8"/>
+					<f:selectItem itemLabel="Vencimento contrato de experiência"	itemValue="9"/>
+					<f:selectItem itemLabel="Extinção antecipada experiência"		itemValue="10"/>
+				</p:selectOneMenu>	
+
+				<p:outputLabel for="dtInicio"		value="Data de inicio: " />				
+				<p:inputMask	id="dtInicio" 		mask="99/99/9999"	/>
+
+				<p:outputLabel for="dtTermino"		value="Data de término: " />				
+				<p:inputMask	id="dtTermino" 		mask="99/99/9999"	/>
+								
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" />
+				</f:facet>
+			</p:panelGrid>
+								
+		</ui:define>
+	</ui:composition>
+</html>

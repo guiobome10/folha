@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Cadastro de Índices </ui:define>
+		
+		<ui:define name="conteudo">
+			<p:panelGrid columns="4" >
+				<f:facet name="header"> Cadastro de Índices</f:facet>
+
+				<p:fieldset legend="Índices mensais">
+					<p:outputLabel for="valorSalarioMinimo"		value="Valor salário mínimo: " />				
+					<p:inputMask	id="valorSalarioMinimo" 	mask="999.999,99"	/>
+
+					<p:outputLabel for="percentualFGTS"		value="Percentual FGTS: " />				
+					<h:panelGrid columns="1" style="margin-bottom:10px;">  
+	        			<h:panelGroup>  
+	            			<h:outputText id="outputPercentualFGTS" />
+	            			<h:outputText value="%" />  
+	        			</h:panelGroup>   
+          
+	        			<h:inputHidden id="percentualFGTS"  />  
+	        			<p:slider for="percentualFGTS" display="outputPercentualFGTS" style="width:200px" />  
+				    </h:panelGrid> 
+
+					<p:outputLabel for="valorPorDepentende"		value="Valor por dependente: " />				
+					<p:inputMask	id="valorPorDepentende" 	mask="999.999,99"	/>
+
+					<p:outputLabel for="minimoIRF"		value="Mínimo I.R.F: " />				
+					<p:inputMask	id="minimoIRF" 		mask="999,99"	/>
+
+					<p:outputLabel for="minimoINSS"		value="Mínimo INSS: " />				
+					<p:inputMask	id="minimoINSS" 		mask="999,99"	/>
+
+					<p:outputLabel for="minimoPIS"		value="Mínimo PIS: " />				
+					<p:inputMask	id="minimoPIS" 		mask="999,99"	/>
+				</p:fieldset>
+
+				<p:fieldset legend="Salário família">
+					<p:outputLabel for="faixa1"			value="Faixa 1: " />				
+					<p:inputMask	id="faixa1" 		mask="999.999,99"	/>
+
+					<p:outputLabel for="valorCota1"			value="Valor da quota 1: " />				
+					<p:inputMask	id="valorCota1" 		mask="999,99"	/>
+
+					<p:outputLabel for="faixa2"			value="Faixa 2: " />				
+					<p:inputMask	id="faixa2" 		mask="999.999,99"	/>
+
+					<p:outputLabel for="valorCota2"			value="Valor da quota 2: " />				
+					<p:inputMask	id="valorCota2" 		mask="999,99"	/>
+				</p:fieldset>
+
+				<p:fieldset legend="Tabela de INSS">
+					<p:outputLabel for="faixaINSS1"			value="Faixa 1: " />				
+					<p:inputMask	id="faixaINSS1" 		mask="9"	value="1"	/>
+
+					<p:outputLabel for="teto1"			value="Teto	faixa 1: " />				
+					<p:inputMask	id="teto1" 			mask="999.999,99"	/>
+
+					<p:outputLabel for="aliquota1"		value="Alíquota	faixa 1: " />				
+					<h:panelGrid columns="1" style="margin-bottom:10px;">  
+	        			<h:panelGroup>  
+	            			<h:outputText id="outputAliquota1" />
+	            			<h:outputText value="%" />  
+	        			</h:panelGroup>   
+          
+	        			<h:inputHidden id="aliquota1"  />  
+	        			<p:slider for="aliquota1" display="outputAliquota1" style="width:200px" />  
+				    </h:panelGrid> 
+
+					<p:outputLabel for="faixaINSS2"			value="Faixa 2: " />				
+					<p:inputMask	id="faixaINSS2" 		mask="9"	value="2"	/>
+
+					<p:outputLabel for="teto2"			value="Teto	faixa 2: " />				
+					<p:inputMask	id="teto2" 			mask="999.999,99"	/>
+
+					<p:outputLabel for="aliquota2"		value="Alíquota	faixa 2: " />				
+					<h:panelGrid columns="1" style="margin-bottom:10px;">  
+	        			<h:panelGroup>  
+	            			<h:outputText id="outputAliquota2" />
+	            			<h:outputText value="%" />  
+	        			</h:panelGroup>   
+          
+	        			<h:inputHidden id="aliquota2"  />  
+	        			<p:slider for="aliquota2" display="outputAliquota2" style="width:200px" />  
+				    </h:panelGrid> 
+
+					<p:outputLabel for="faixaINSS3"			value="Faixa 1: " />				
+					<p:inputMask	id="faixaINSS3" 		mask="9"	value="3"	/>
+
+					<p:outputLabel for="teto3"			value="Teto	faixa 3: " />				
+					<p:inputMask	id="teto3" 			mask="999.999,99"	/>
+
+					<p:outputLabel for="aliquota3"		value="Alíquota	faixa 3: " />				
+					<h:panelGrid columns="1" style="margin-bottom:10px;">  
+	        			<h:panelGroup>  
+	            			<h:outputText id="outputAliquota3" />
+	            			<h:outputText value="%" />  
+	        			</h:panelGroup>   
+          
+	        			<h:inputHidden id="aliquota3"  />  
+	        			<p:slider for="aliquota3" display="outputAliquota3" style="width:200px" />  
+				    </h:panelGrid> 
+
+				</p:fieldset>
+
+				<p:fieldset legend="Tabela de IRRF">
+					<p:outputLabel for="faixaIRRF1"			value="Faixa 1: " />				
+					<p:inputMask	id="faixaIRRF1" 		mask="9"	value="1"	/>
+
+					<p:outputLabel for="tetoIRRF1"			value="Teto	faixa 1: " />				
+					<p:inputMask	id="tetoIRRF1" 			mask="999.999,99"	/>
+
+					<p:outputLabel for="aliquotaIRRF1"		value="Alíquota	faixa 1: " />				
+					<h:panelGrid columns="1" style="margin-bottom:10px;">  
+	        			<h:panelGroup>  
+	            			<h:outputText id="outputAliquotaIRRF1" />
+	            			<h:outputText value="%" />  
+	        			</h:panelGroup>   
+          
+	        			<h:inputHidden id="aliquotaIRRF1"  />  
+	        			<p:slider for="aliquotaIRRF1" display="outputAliquotaIRRF1" style="width:200px" />  
+				    </h:panelGrid> 
+
+					<p:outputLabel for="deducaoIRRF1"			value="Dedução faixa 1: " />				
+					<p:inputMask	id="deducaoIRRF1" 			mask="999.999,99"	/>
+
+					<p:outputLabel for="faixaIRRF2"			value="Faixa 2: " />				
+					<p:inputMask	id="faixaIRRF2" 		mask="9"	value="2"	/>
+
+					<p:outputLabel for="tetoIRRF2"			value="Teto	faixa 2: " />				
+					<p:inputMask	id="tetoIRRF2" 			mask="999.999,99"	/>
+
+					<p:outputLabel for="aliquotaIRRF2"		value="Alíquota	faixa 2: " />				
+					<h:panelGrid columns="1" style="margin-bottom:10px;">  
+	        			<h:panelGroup>  
+	            			<h:outputText id="outputAliquotaIRRF2" />
+	            			<h:outputText value="%" />  
+	        			</h:panelGroup>   
+          
+	        			<h:inputHidden id="aliquotaIRRF2"  />  
+	        			<p:slider for="aliquotaIRRF2" display="outputAliquotaIRRF2" style="width:200px" />  
+				    </h:panelGrid> 
+
+					<p:outputLabel for="deducaoIRRF2"			value="Dedução faixa 2: " />				
+					<p:inputMask	id="deducaoIRRF2" 			mask="999.999,99"	/>
+
+				</p:fieldset>
+
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" />
+				</f:facet>
+			</p:panelGrid>
+								
+		</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html" locale="pt">
+	<h:head>
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+			<meta charset="UTF-8" />
+			<title><ui:insert name="tituloPagina"> Folha de Pagamento  </ui:insert>
+			</title>
+		</f:facet>
+
+		<link rel="shortcut icon"	href="#{request.contextPath}/resources/img/icon.ico" />
+		<h:outputScript 	library="js"  name="main.js" />
+		<h:outputStylesheet library="css" name="default.css" />
+		<h:outputStylesheet library="css" name="syntaxhighlighter.css" />
+	</h:head>
+
+	<h:body>
+		<div id="tudo">
+			<h:form id="form" prependId="false">
+				<div id="topo">
+					<p:growl autoUpdate="true" globalOnly="true" id="msgm" />
+					<ui:insert name="topo">
+						<ui:include src="topo.xhtml" />
+					</ui:insert>
+				</div>
+	
+				<div id="conteudo">
+					<ui:insert name="conteudo" />							
+					
+					<div id="rodape" class="ui-widget ui-widget-content ui-widget-header">
+						<ui:insert name="bottom">
+							<ui:include src="rodape.xhtml" />
+						</ui:insert>
+					</div>				
+				</div>
+			</h:form>
+
+			<div id="formAdicional">
+				<ui:insert name="formAdicional" />
+			</div>
+		</div>
+	</h:body>
+</f:view>
+</html>
+

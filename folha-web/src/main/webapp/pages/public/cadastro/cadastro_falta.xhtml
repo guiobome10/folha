@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Cadastro de Falta </ui:define>
+		
+		<ui:define name="conteudo">			
+			<p:panelGrid columns="2" id="cadFalta" >
+				<f:facet name="header"> 
+					<h:outputText value="Cadastro de Falta" /> 
+					<p:messages id="msg" />
+				</f:facet>
+			
+				<p:outputLabel for="funcionario"		value="Funcionário: " />				
+				<p:autoComplete id="funcionario" 		value="#{faltaMB.falta.funcionario}" required="true"
+								completeMethod="#{faltaMB.completaFuncionario}" forceSelection="true"
+								var="f" 	itemLabel="#{f.nome}"	itemValue="#{f}"	>
+					<f:converter converterId="funcionarioConverter" />
+				</p:autoComplete>
+
+				<p:outputLabel for="data"		value="Data: " />				
+				<p:calendar 	id="data" 		navigator="true"
+						value="#{faltaMB.falta.data}"
+						pattern="dd/MM/yyyy" required="true" />
+										    
+				<p:outputLabel   for="tipoFalta"		value="Tipo de falta:" />				
+				<p:selectOneRadio id="tipoFalta"  		value="#{faltaMB.falta.tipoFalta}" required="true" > 
+					<f:selectItems value="#{faltaMB.tiposFalta}" var="tf" itemLabel="#{tf.descricao}" itemValue="#{tf}" />
+				</p:selectOneRadio>
+
+			    <f:facet name="footer">
+			    	<p:commandButton value="Salvar" actionListener="#{faltaMB.inserir}" update="msg cadFalta" />
+			    </f:facet>
+			</p:panelGrid>							
+		</ui:define>
+	</ui:composition>
+</html>

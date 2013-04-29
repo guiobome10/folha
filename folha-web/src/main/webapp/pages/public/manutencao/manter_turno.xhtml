@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Manutenção de Turnos </ui:define>
+		
+		<ui:define name="conteudo">
+			<p:dataTable editable="true" id="dataTable" value="#{turnoMB.turnos}" var="turno" rowsPerPageTemplate="10,20"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+			paginator="true" rows="10" emptyMessage="Nenhum registro encontrado." paginatorAlwaysVisible="false" >
+				<f:facet name="header"> 
+					<h:outputText value="Manutenção de Turnos" />
+				</f:facet>
+
+				<p:ajax event="rowEdit" 		listener="#{turnoMB.onEdit}" update="dataTable" />  
+       			<p:ajax event="rowEditCancel" 	listener="#{turnoMB.onCancel}" update="dataTable" />  
+
+				<p:column headerText="Entrada" sortBy="#{turno.horaEntrada}" >
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{turno.horaEntrada}" >
+								<f:convertDateTime pattern="HH:mm" timeZone="GMT-3" locale="pt_BR" type="time"  />
+							</h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<p:inputMask  	mask="99:99" 	value="#{turno.horaEntrada}"	required="true"	>
+								<f:convertDateTime pattern="HH:mm" timeZone="GMT-3" locale="pt_BR" type="time"  />
+							</p:inputMask>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Saída intervalo" sortBy="#{turno.horaSaidaAlmoco}" >
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{turno.horaSaidaAlmoco}" >
+								<f:convertDateTime pattern="HH:mm" timeZone="GMT-3" locale="pt_BR" type="time"  />
+							</h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<p:inputMask  	mask="99:99"	value="#{turno.horaSaidaAlmoco}"	required="true"	>
+								<f:convertDateTime pattern="HH:mm" timeZone="GMT-3" locale="pt_BR" type="time"  />
+							</p:inputMask>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Retorno intervalo" sortBy="#{turno.horaRetornoAlmoco}" >
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{turno.horaRetornoAlmoco}" >
+								<f:convertDateTime pattern="HH:mm" timeZone="GMT-3" locale="pt_BR" type="time"  />
+							</h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<p:inputMask  	mask="99:99"	value="#{turno.horaRetornoAlmoco}"	required="true"	>
+								<f:convertDateTime pattern="HH:mm" timeZone="GMT-3" locale="pt_BR" type="time"  />
+							</p:inputMask>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Saída" sortBy="#{turno.horaSaida}" >
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{turno.horaSaida}" >
+								<f:convertDateTime pattern="HH:mm" timeZone="GMT-3" locale="pt_BR" type="time"  />
+							</h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<p:inputMask  	mask="99:99"	value="#{turno.horaSaida}"	required="true"	>
+								<f:convertDateTime pattern="HH:mm" timeZone="GMT-3" locale="pt_BR" type="time"  />
+							</p:inputMask>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Tipo de jornada" sortBy="#{turno.tipoJornada}" >
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{turno.tipoJornada.asString}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu id="tipoJornada"  		value="#{turno.tipoJornada}" 	required="true"> 
+								<f:converter converterId="tipoJornadaConverter" />
+								<f:selectItems value="#{tipoJornadaMB.tiposJornada}" var="tipoJornada" itemLabel="#{tipoJornada.descricao}" 	itemValue="#{tipoJornada}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Options" style="width:40px">
+					<p:rowEditor id="rowEditor" />
+				</p:column>
+			
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" >
+<h:head>
+	<h:outputStylesheet library="css" name="default.css" />
+	<title>Titulo</title>
+</h:head>
+<h:body>
+	<h1>Titulo</h1>
+					<p:outputLabel for="calcularMedias"		value="Calcular médias: " />				
+				<p:selectOneRadio id="calcularMedias" > 
+					<f:selectItem itemLabel="Sim" itemValue="1" />
+					<f:selectItem itemLabel="Não" itemValue="2" />
+				</p:selectOneRadio> 
+				
+				<p:outputLabel for="mesMedias"	value="Mês para médias: " />				
+				<p:spinner 		id="mesMedias" 	min="1" 	max="12"	maxlength="2" />
+			
+				<p:outputLabel for="para13Salario"	value="Para 13º salário: " />				
+				<p:selectOneMenu id="para13Salario" > 
+					<f:selectItem itemLabel="Não considerar" itemValue="01" />
+					<f:selectItem itemLabel="Em horas" itemValue="2" />
+					<f:selectItem itemLabel="Em valor" itemValue="3" />
+					<f:selectItem itemLabel="Repete último" itemValue="4" />
+				</p:selectOneMenu>	
+
+				<p:outputLabel for="paraFerias"	value="Para férias: " />				
+				<p:selectOneMenu id="paraFerias" > 
+					<f:selectItem itemLabel="Não considerar" itemValue="01" />
+					<f:selectItem itemLabel="Em horas" itemValue="2" />
+					<f:selectItem itemLabel="Em valor" itemValue="3" />
+					<f:selectItem itemLabel="Repete último" itemValue="4" />
+				</p:selectOneMenu>	
+			    
+	
+</h:body>
+</html>

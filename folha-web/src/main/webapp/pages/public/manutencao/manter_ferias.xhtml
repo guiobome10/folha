@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Cadastro de Férias </ui:define>
+		
+		<ui:define name="conteudo">
+			<p:messages id="msg" />
+			<p:panelGrid columns="4" id="cadFerias" >
+				<f:facet name="header"> Cadastro de Férias</f:facet>
+
+				<p:outputLabel for="funcionario"	value="Funcionário: " />				
+				<p:selectOneMenu id="funcionario"   value="#{feriasMB.ferias.funcionario}" >
+					<f:converter converterId="funcionarioConverter" />
+					<f:selectItems value="#{funcionarioMB.funcionarios}" var="funcionario" itemLabel="#{funcionario.nome}" 	itemValue="#{funcionario}"/>
+				</p:selectOneMenu>	
+				
+				<p:outputLabel for="dtInicio"		value="Data de inicio: " />				
+				<p:calendar 	id="dtInicio" navigator="true"
+						value="#{feriasMB.ferias.dataInicio}"
+						pattern="dd/MM/yyyy" required="true" />
+				
+
+				<p:outputLabel for="dtTermino"		value="Data de término: " />				
+				<p:calendar 	id="dtTermino" 		navigator="true"
+						value="#{feriasMB.ferias.dataTermino}"
+						pattern="dd/MM/yyyy" required="true" />
+
+				<p:outputLabel for="qtFaltas"		value="Faltas: " />				
+				<p:inputMask	id="qtFaltas" 		mask="999" value="#{feriasMB.ferias.quantidadeFaltas}" required="true"	/>
+
+				<p:outputLabel for="adiantamento"	value="Adiantamento 13º: " />				
+				<p:selectOneRadio id="adiantamento" value="#{feriasMB.ferias.adiantamentoDecimoTerceiro}" required="true"> 
+					<f:selectItem itemLabel="Sim" itemValue="true" />
+					<f:selectItem itemLabel="Não" itemValue="false" />
+				</p:selectOneRadio>
+								
+				<p:outputLabel for="periodoAquisitivo"	value="Período aquisitivo: " />				
+				<p:selectOneRadio id="periodoAquisitivo" value="#{feriasMB.ferias.periodoAquisitivo}" required="true" > 
+					<f:selectItems value="#{feriasMB.periodosAquisitivos}" var="periodoAquisitivo" />
+				</p:selectOneRadio>
+								
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" actionListener="#{feriasMB.inserir}" update="msg cadFerias" />
+				</f:facet>
+			</p:panelGrid>
+								
+		</ui:define>
+	</ui:composition>
+</html>

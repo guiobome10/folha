@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+	<h:outputLink value="#{request.contextPath}/pages/public/cadastro/index.jsf">
+		<p:graphicImage library="img" name="logo.gif" />
+	</h:outputLink>
+	<p:megaMenu>
+		<p:submenu label="Cadastros">
+			<p:column>
+				<p:submenu label="Novo(a)">
+					<p:menuitem title="Cadastrar empresa"		url="/pages/public/cadastro/cadastro_empresa.jsf" 		value="Empresa" />
+					<p:menuitem title="Cadastrar funcionário"	url="/pages/public/cadastro/cadastro_funcionario.jsf" 	value="Funcionário" />			
+					<p:menuitem title="Cadastrar dependente"	url="/pages/public/cadastro/cadastro_dependente.jsf" 	value="Dependendente" />			
+					<p:menuitem title="Cadastrar sindicato"		url="/pages/public/cadastro/cadastro_sindicato.jsf"		value="Sindicato" />			
+					<p:menuitem title="Cadastrar departamento"	url="/pages/public/cadastro/cadastro_departamento.jsf" 	value="Departamento" />			
+					<p:menuitem title="Cadastrar cargo"			url="/pages/public/cadastro/cadastro_cargo.jsf"			value="Cargo" />			
+					<p:menuitem title="Cadastrar benefício"		url="/pages/public/cadastro/cadastro_beneficio.jsf" 	value="Benefício" />			
+					<p:menuitem title="Cadastrar desconto"		url="/pages/public/cadastro/cadastro_desconto.jsf" 		value="Desconto" />			
+					<p:menuitem title="Cadastrar provento"		url="/pages/public/cadastro/cadastro_provento.jsf" 		value="Provento" />			
+					<p:menuitem title="Cadastrar turno"			url="/pages/public/cadastro/cadastro_turno.jsf" 		value="Turno" />			
+					<p:menuitem title="Cadastrar equipamento"	url="/pages/public/cadastro/cadastro_equipamento.jsf" 	value="Equipamento" />			
+					<p:menuitem title="Cadastrar férias"		url="/pages/public/cadastro/cadastro_ferias.jsf" 		value="Férias" />			
+					<p:menuitem title="Cadastrar cidade"		url="/pages/public/cadastro/cadastro_cidade.jsf" 		value="Cidade" />
+					<p:menuitem title="Cadastrar banco"			url="/pages/public/cadastro/cadastro_banco.jsf" 		value="Banco" />
+					<p:menuitem title="Cadastrar falta"			url="/pages/public/cadastro/cadastro_falta.jsf" 		value="Falta" />
+				</p:submenu>
+			</p:column>
+		</p:submenu>
+		<p:submenu label="Listas" >		
+			<p:column>
+				<p:submenu label="Manutenção">
+					<p:menuitem title="Manutenção de bancos"		url="/pages/public/manutencao/manter_banco.jsf" 		value="Banco" />
+					<p:menuitem title="Manutenção de benefícios"	url="/pages/public/manutencao/manter_beneficio.jsf" 	value="Benefício" />			
+					<p:menuitem title="Manutenção de cargos"		url="/pages/public/manutencao/manter_cargo.jsf"			value="Cargo" />			
+					<p:menuitem title="Manutenção de cidades"		url="/pages/public/manutencao/manter_cidade.jsf" 		value="Cidade" />
+					<p:menuitem title="Manutenção de departamentos"	url="/pages/public/manutencao/manter_departamento.jsf" 	value="Departamento" />			
+					<p:menuitem title="Manutenção de dependentes"	url="/pages/public/manutencao/manter_dependente.jsf" 	value="Dependendente" />
+					<p:menuitem title="Manutenção de descontos"		url="/pages/public/manutencao/manter_desconto.jsf" 		value="Desconto" />
+					<p:menuitem title="Manutenção de empresas" 		url="/pages/public/manutencao/manter_empresa.jsf" 		value="Empresa" />
+					<p:menuitem title="Manutenção de equipamentos"	url="/pages/public/manutencao/manter_equipamento.jsf" 	value="Equipamento" />
+					<p:menuitem title="Manutenção de faltas"		url="/pages/public/manutencao/manter_falta.jsf" 		value="Falta" />
+					<p:menuitem title="Manutenção de férias"		url="/pages/public/manutencao/manter_ferias.jsf" 		value="Férias" />
+					<p:menuitem title="Manutenção de funcionários"	url="/pages/public/manutencao/manter_funcionario.jsf" 	value="Funcionário" />
+					<p:menuitem title="Manutenção de proventos"		url="/pages/public/manutencao/manter_provento.jsf" 		value="Provento" />
+					<p:menuitem title="Manutenção de sindicatos"	url="/pages/public/manutencao/manter_sindicato.jsf"		value="Sindicato" />	
+					<p:menuitem title="Manutenção de turnos"		url="/pages/public/manutencao/manter_turno.jsf" 		value="Turno" />
+				</p:submenu>
+			</p:column>
+		</p:submenu>
+	</p:megaMenu>
+</ui:composition>
+</html>

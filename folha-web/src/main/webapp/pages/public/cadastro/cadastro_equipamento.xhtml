@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Cadastro equipamento </ui:define>
+		
+		<ui:define name="conteudo">
+			<p:panelGrid columns="2" id="cadEquipamento" >
+				<f:facet name="header"> 
+					<h:outputText value="Cadastro equipamento" />
+					<p:messages id="msg" />
+				</f:facet>
+
+				<p:outputLabel for="empresa" value="Empresa: " />
+				<p:selectOneMenu id="empresa"
+					value="#{equipamentoMB.equipamento.empresa}" required="true">
+					<f:converter converterId="empresaConverter" />
+					<f:selectItems value="#{empresaMB.empresas}" var="empresa"
+						itemLabel="#{empresa.razaoSocial}" itemValue="#{empresa}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="tipoEquipamento" value="Tipo de equipamento: " />
+				<p:selectOneMenu id="tipoEquipamento"
+					value="#{equipamentoMB.equipamento.tipoEquipamento}" required="true">
+					<f:converter converterId="tipoEquipamentoConverter" />
+					<f:selectItems value="#{tipoEquipamentoMB.tipoEquipamentos}" var="tipoEquipamento"
+						itemLabel="#{tipoEquipamento.descricao}" itemValue="#{tipoEquipamento}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="descricao"		value="Descrição:" />				
+				<p:inputText 	id="descricao" 		value="#{equipamentoMB.equipamento.descricao}" maxlength="40" required="true" />
+				
+				<p:outputLabel for="quantidade"		value="Quantidade:" />
+				<p:spinner 		id="quantidade"		value="#{equipamentoMB.equipamento.quantidade}" maxlength="3" min="0" required="true"   />
+								
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" actionListener="#{equipamentoMB.inserir}" update="msg cadEquipamento" />
+				</f:facet>
+			</p:panelGrid>
+								
+		</ui:define>
+	</ui:composition>
+</html>

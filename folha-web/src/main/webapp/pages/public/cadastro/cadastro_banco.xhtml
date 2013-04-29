@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Cadastro banco </ui:define>
+		
+		<ui:define name="conteudo">
+			<p:panelGrid columns="2" id="cadBanco" >
+				<f:facet name="header"> 
+					<h:outputText value="Cadastro banco" />
+					<p:messages id="msg" />
+					<p:focus for="codigo" />
+				</f:facet>
+
+				<p:outputLabel for="codigo"		value="Codigo: " />				
+				<p:inputMask mask="999" 	id="codigo" 		value="#{bancoMB.banco.codigo}"  required="true" maxlength="3" />
+								
+				<p:outputLabel for="nome"		value="Nome: " />				
+				<p:inputText 	id="nome" 		value="#{bancoMB.banco.nome}" maxlength="40" required="true" />
+								
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" actionListener="#{bancoMB.inserir}" update="msg cadBanco" />
+				</f:facet>
+			</p:panelGrid>
+								
+		</ui:define>
+	</ui:composition>
+</html>

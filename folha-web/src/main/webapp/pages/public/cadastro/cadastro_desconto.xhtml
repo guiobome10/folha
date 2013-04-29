@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Cadastro de Desconto </ui:define>
+		
+		<ui:define name="conteudo">
+			<p:messages id="msg" />
+			<p:panelGrid columns="2" id="cadDesconto" >
+				<f:facet name="header"> Cadastro de Desconto</f:facet>
+			
+				<p:outputLabel for="descricao"		value="Descrição: " />				
+				<p:inputText  	id="descricao" 		value="#{descontoMB.desconto.descricao}" required="true"	/>
+							
+				<p:outputLabel for="percentual"		value="Percentual: " />				
+				<h:panelGrid columns="1" style="margin-bottom:10px;">  
+	        		<h:panelGroup>  
+	           			<h:outputText id="outputPercentual" />
+	           			<h:outputText value="%" />  
+	        		</h:panelGroup>   
+          
+	       			<h:inputHidden id="percentual"  value="#{descontoMB.desconto.percentual}" required="true" />  
+	       			<p:slider for="percentual" display="outputPercentual" style="width:200px" />  
+			    </h:panelGrid> 
+			    
+				<p:outputLabel for="valor"		value="Valor: " />
+				<p:inputMask 	id="valor"		mask="9.999,99"  value="#{descontoMB.desconto.valor}" required="true" >
+					<f:converter converterId="valorDecimalConverter" />
+				</p:inputMask>				
+
+				<p:outputLabel for="informeRendimentos"	value="Informe de rendimentos: " />				
+				<p:selectOneMenu id="informeRendimentos" value="#{descontoMB.desconto.informeRendimento}" required="true" > 
+					<f:selectItems value="#{descontoMB.informesRendimento}" />
+				</p:selectOneMenu>	
+			    
+			    <f:facet name="footer">
+			    	<p:commandButton value="Salvar" actionListener="#{descontoMB.inserir}" update="msg cadDesconto" />
+			    </f:facet>
+			</p:panelGrid>							
+		</ui:define>
+	</ui:composition>
+</html>

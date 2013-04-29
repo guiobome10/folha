@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="tituloPagina"> Cadastro de Turno </ui:define>
+		
+		<ui:define name="conteudo">
+			<p:messages id="msg" />
+			<p:panelGrid columns="2" >
+				<f:facet name="header"> Cadastro de Turno</f:facet>
+			
+				<p:outputLabel for="entrada"		value="Entrada: " />				
+				<p:inputMask  	id="entrada" 		mask="99:99" 	value="#{turnoMB.turno.horaEntrada}"	required="true"	>
+					<f:convertDateTime pattern="HH:mm" timeZone="GMT-3" locale="pt_BR" type="time"  />
+				</p:inputMask>
+							
+				<p:outputLabel for="saidaIntervalo"		value="Saída intervalo: " />				
+				<p:inputMask  	id="saidaIntervalo" 	mask="99:99"	value="#{turnoMB.turno.horaSaidaAlmoco}"	required="true"	>
+					<f:convertDateTime pattern="HH:mm" timeZone="GMT-3" locale="pt_BR" type="time"  />
+				</p:inputMask>
+							
+				<p:outputLabel for="retornoIntervalo"		value="Retorno intervalo: " />				
+				<p:inputMask  	id="retornoIntervalo" 	mask="99:99"	value="#{turnoMB.turno.horaRetornoAlmoco}"	required="true"	>
+					<f:convertDateTime pattern="HH:mm" timeZone="GMT-3" locale="pt_BR" type="time"  />
+				</p:inputMask>
+								
+				<p:outputLabel for="saida"		value="Saída: " />				
+				<p:inputMask  	id="saida" 		mask="99:99"	value="#{turnoMB.turno.horaSaida}"	required="true"	>
+					<f:convertDateTime pattern="HH:mm" timeZone="GMT-3" locale="pt_BR" type="time"  />
+				</p:inputMask>
+								
+				<p:outputLabel for="tipoJornada"		value="Tipo Jornada: " />				
+				<p:selectOneMenu id="tipoJornada"  		value="#{turnoMB.turno.tipoJornada}" 	required="true"> 
+					<f:converter converterId="tipoJornadaConverter" />
+					<f:selectItems value="#{tipoJornadaMB.tiposJornada}" var="tipoJornada" itemLabel="#{tipoJornada.descricao}" 	itemValue="#{tipoJornada}" />
+				</p:selectOneMenu>
+
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" actionListener="#{turnoMB.inserir}" update="msg" />
+				</f:facet>
+			</p:panelGrid>							
+		</ui:define>
+	</ui:composition>
+</html>
